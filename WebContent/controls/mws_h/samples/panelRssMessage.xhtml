@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_h="http://webmethods.com/jsf/mws/html">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+	    <mws_h:panelRssMessage id="rssMsg">
+	        <f:facet name="title"><caf_h:outputText raw="false" value="title"/></f:facet>
+	        <f:facet name="link">http://www.softwareag.com</f:facet>
+	        <f:facet name="description"><div>description</div></f:facet>
+	    </mws_h:panelRssMessage>
+	    
+	    <h3>The mws_h:panelRssMessage control sets the text-only rendering of the facets as request attributes.</h3>
+	    <p id="title">#{requestScope.title}</p>
+        <p id="link">#{requestScope.link}</p>
+        <p id="description">#{requestScope.description}</p>
+
+    </caf_f:view>
+
+</ui:composition>

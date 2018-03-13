@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:includeResourceBundle id="includeRB"
+        value="caf.war.wm_opencaf_showcase.AppResources" />
+
+    <button id="button1" onclick="return showMsg1();">
+        Show Message #1
+    </button>
+    <button id="button2" onclick="return showMsg2();">
+        Show Message #2
+    </button>
+    <script type="text/javascript">
+        function showMsg1() {
+	        var MY_RESOURCES = CAF.getBundle("#{caf:cid('includeRB')}");
+	        CAF.Dialog.alert(MY_RESOURCES["message.1"]);
+            return false;
+        }
+        function showMsg2() {
+            var MY_RESOURCES = CAF.getBundle("#{caf:cid('includeRB')}");
+            CAF.Dialog.alert(formatMessage(MY_RESOURCES["message.2"], ["Universe"]));
+            return false;
+        }
+    </script>
+    
+</ui:composition>

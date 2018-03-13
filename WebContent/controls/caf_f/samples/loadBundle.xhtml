@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <caf_h:formattedMessages id="messages" />
+
+    <caf_h:form id="form">
+
+        <caf_f:loadBundle var="myStrings" basename="caf.war.wm_opencaf_showcase.AppResources" />
+        <p id="message1">String from Resource Bundle: #{myStrings["message.1"]}</p>       
+        
+        <p>
+            Parameterized String from Resource Bundle:
+            <caf_h:outputFormat id="message2" value="#{myStrings['message.2']}">
+                  <f:param name="0" value="Universe"/>
+            </caf_h:outputFormat>
+        </p>
+
+    </caf_h:form>
+
+</ui:composition>

@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <caf_h:form id="defaultForm">
+        <caf_h:panelPropertyLine id="line1" label="Property #1">
+            <caf_h:inputText id="input1" useClientSideValidation="false">
+                <caf_f:validateRegExpr pattern="^\d{3}-\d{3}-\d{4}$"></caf_f:validateRegExpr>
+            </caf_h:inputText>
+        </caf_h:panelPropertyLine>
+        
+        <caf_h:asyncCommandButton id="button1" value="Apply"/>
+    </caf_h:form>
+
+</ui:composition>

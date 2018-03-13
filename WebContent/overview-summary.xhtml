@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/templates/page.xhtml">
+        <ui:param name="pageTitle" value="OpenCAF Showcase" />
+        <ui:param name="bodyCssClass" value="contentContainer"/>
+        <ui:define name="body">
+	        <div class="summary">
+	            <ul class="blockList">
+	                <li class="blockList">
+	                    <table class="overviewSummary" border="0" cellpadding="3" cellspacing="0"
+	                        summary="Topics table, listing topics, and an explanation">
+	                        <thead>
+	                            <tr>
+	                                <th class="colFirst" scope="col">Topic</th>
+	                                <th class="colLast" scope="col">Description</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <c:forEach items="#{allTopics.topicList}" var="topic" varStatus="loop">
+	                            <tr class="#{loop.index % 2 == 0 ? 'rowColor' : 'altColor'}">
+	                                <td class="colFirst" >
+	                                   <div style="margin-left: #{topic.depth * 20}px">
+	                                       <c:choose>
+	                                           <c:when test="#{not empty topic.link}">
+	                                               <a target="topicFrame" href="#{topic.link}"><i>#{topic.displayName}</i></a>
+	                                           </c:when>
+	                                           <c:otherwise>
+	                                               <i>#{topic.displayName}</i>
+	                                           </c:otherwise>
+	                                       </c:choose>
+	                                   </div>
+	                                </td>
+	                                <td class="colLast">#{topic.description}</td>
+	                            </tr>
+	                            </c:forEach>
+	                        </tbody>
+	                    </table>
+	                </li>
+	            </ul>
+        </div>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

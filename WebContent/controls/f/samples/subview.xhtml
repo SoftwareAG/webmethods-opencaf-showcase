@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<caf_h:formattedMessages id="messages" />
+
+    <f:subview id="subview1">
+		<h:form id="form">
+	        <h:commandButton id="button1" value="Action #1" onclick="return showMyId(this);">
+	        </h:commandButton>
+		</h:form>
+    </f:subview>
+    <f:subview id="subview2">
+        <h:form id="form">
+            <h:commandButton id="button1" value="Action #2" onclick="return showMyId(this);">
+            </h:commandButton>
+        </h:form>
+    </f:subview>
+    
+    <script>
+        showMyId = function(element) {
+            CAF.Dialog.alert("Button ID is: " + element.id);
+            return false;
+        }
+    </script>
+
+</ui:composition>

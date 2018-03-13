@@ -1,0 +1,15 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+        <div>
+            <label for="#{caf:cid('input')}"><span class="caf-label-text">Click below to edit text</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputInPlaceText id="input" value="#{inputBean.value}" width="input30" />
+        </div>
+    </caf_h:form>
+    
+</ui:composition>

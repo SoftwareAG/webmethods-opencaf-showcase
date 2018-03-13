@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    <caf_h:form id="form" defaultCommand="button1">
+        <div>
+            <caf_h:outputLabel for="input1">Validator #1</caf_h:outputLabel>
+        </div>
+        <div>
+            <caf_h:inputText id="input1" value="#{inputStringBean.value}" width="input30" >
+                <f:validator binding="#{validatorBean.myValidator}"/>
+            </caf_h:inputText>
+        </div>
+        <h:message id="input1msg" for="input1" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+
+        <div>
+            <caf_h:outputLabel for="input2">Validator #2</caf_h:outputLabel>
+        </div>
+        <div>
+            <caf_h:inputText id="input2" value="#{inputBean.value}" width="input30" >
+                <f:validator validatorId="caf.war.wm_opencaf_showcase.validator.custom"/>
+            </caf_h:inputText>
+        </div>
+        <h:message id="input2msg" for="input2" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+        
+        <p>
+           <h:commandButton id="button1" value="Submit" />
+        </p>
+        
+    </caf_h:form>
+    
+</ui:composition>

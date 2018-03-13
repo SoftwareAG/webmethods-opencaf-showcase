@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/templates/page_with_syntaxhighlighter.xhtml">
+        <ui:param name="pageTitle" value="Skins > JSR-186 Portlet Styles" />
+        <ui:define name="body">
+
+            <ui:include src="samples/jsr168-styles.xhtml"/>
+             
+            <h4 class="sourcetabbox">Source</h4>
+            <div class="sourcetabbox">
+                <caf_h:form id="tabsform">
+	                <caf_h:toggleTabs id="sourceTabs" value="xhtml">
+	                    <caf_f:selectItem id="xhtmlItem" itemValue="xhtml" itemLabel="jsr168-styles.xhtml" />
+	                </caf_h:toggleTabs>
+	                <caf_h:panelHideable id="xhtml" showEffect="Effect.Appear">
+	                    <pre class="brush:xhtml;toolbar:false;highlight:[]">#{samplesBean.webResource("/skins/samples/jsr168-styles.xhtml")}</pre>
+	                </caf_h:panelHideable>
+	            </caf_h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:form id="form">
+        <div>
+            <label for="#{caf:cid('input')}"><span class="caf-label-text">Parameterized Text</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:outputFormat id="parameterizedText" value="Hello {0} World." escape="false">
+                <caf_h:contentParameter name="0">
+                    <caf_h:inputText id="input"/>
+                </caf_h:contentParameter>
+            </caf_h:outputFormat>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <label for="#{caf:cid('input')}"><span class="caf-label-text">Import Template</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_f:importTemplateView id="importView" value="/controls/caf_h/samples/import.xhtml">
+                <caf_h:contentParameter name="panel1">
+                    <caf_h:inputText id="input" />
+                </caf_h:contentParameter>
+            </caf_f:importTemplateView>
+        </div>
+	</caf_h:form>
+	
+</ui:composition>

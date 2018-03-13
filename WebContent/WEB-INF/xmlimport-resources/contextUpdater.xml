@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.webmethods.com/schema/xmlImport.xsd">
+
+	<!-- 1. App Folders -->
+	<context alias="folder.wm_opencaf_showcase">
+		<!-- Template for mws_h:contextUpdater demo workspace -->
+		<wm_xt_workspace name="Context Updater Demo"
+			userAlias="template.wm_opencaf_showcase.contextupdater">
+			<property name="context">
+				<value>
+                    showcase.key1=placeholder
+                    showcase.key2=placeholder
+                </value>
+			</property>
+			<page>
+				<row>
+					<column width="65%">
+						<wm_portletinportlet name="Showcase"
+							proxyThingID="folder.wm_opencaf_showcase" />
+					</column>
+					<column width="35%">
+						<wm_noodle_pack___contextviewer
+							name="Workspace Context Viewer" />
+
+						<wm_noodle_pack___htmltext name="Wired to showcase.key1 value">
+							<wiring name="text" portlet="noodle.workspace.context.wiring"
+								property="wca_context_showcase.key1" />
+						</wm_noodle_pack___htmltext>
+						<wm_noodle_pack___htmltext name="Wired to showcase.key2 value">
+							<wiring name="text" portlet="noodle.workspace.context.wiring"
+								property="wca_context_showcase.key2" />
+						</wm_noodle_pack___htmltext>
+					</column>
+				</row>
+			</page>
+		</wm_xt_workspace>
+	</context>
+</CONFIG>             

@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages"/>
+    
+    <caf_h:panelPropertyLine id="propertyLine" label="fn:contains(..) function">
+        #{fn:contains('value to query in', 'query')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine1" label="fn:containsIgnoreCase(..) function">
+        #{fn:containsIgnoreCase('value to qUeRy in', 'query')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine2" label="fn:endsWith(..) function">
+        #{fn:endsWith('value to query in', 'query in')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine3" label="fn:escapeXml(..) function">
+        #{fn:escapeXml(fnElFunctionsBean.xmlString)}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine4" label="fn:indexOf(..) function">
+        #{fn:indexOf('value to query in', 'query')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine5" label="fn:join(..) function">
+        #{fn:join(fnElFunctionsBean.arrayToJoin, ';')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine6" label="fn:length(..) function">
+        #{fn:length('value to query in')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine7" label="fn:replace(..) function">
+        #{fn:replace('value to query in', 'query', 'replacedValue')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine8" label="fn:split(..) function">
+        <caf_h:dataSimpleList id="simple" rows="10" value="#{fn:split('value to query in', ' ')}" var="row" marker="decimal">
+            #{row}
+        </caf_h:dataSimpleList>
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine9" label="fn:startsWith(..) function">
+        #{fn:startsWith('value to query in', 'value to')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine10" label="fn:substring(..) function">
+        #{fn:substring('value to query in', 4, 12)}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine11" label="fn:substringBefore(..) function">
+        #{fn:substringBefore('value to query in', ' to ')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine12" label="fn:substringAfter(..) function">
+        #{fn:substringAfter('value to query in', 'to ')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine13" label="fn:toUpperCase(..) function">
+        #{fn:toUpperCase('Value To Query')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine14" label="fn:toLowerCase(..) function">
+        #{fn:toLowerCase('Value To Query')}
+    </caf_h:panelPropertyLine>
+    <caf_h:panelPropertyLine id="propertyLine15" label="fn:trim(..) function">
+        #{fn:trim('           value to query in          ')}
+    </caf_h:panelPropertyLine>
+
+</ui:composition>

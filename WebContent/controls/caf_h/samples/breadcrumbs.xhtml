@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_f:view pageManagedBean="webPageBean"
+	   appNavBean="appNavBean">
+	    <caf_h:formattedMessages id="messages"/>
+	    
+	    <caf_h:form id="form">
+	       
+	       <caf_h:breadcrumbs id="breadcrumbs" />
+	
+	    </caf_h:form>
+	</caf_f:view>
+	
+</ui:composition>

@@ -1,0 +1,226 @@
+/*
+    Navigation bar styles
+*/
+.bar {
+    background-color:#4C6B87;
+    background-image:url(resources/background.gif);
+    background-repeat:repeat-x;
+    color:#FFFFFF;
+    padding:.8em .5em .4em .8em;
+    height:auto;/*height:1.8em;*/
+    font-size:1em;
+    margin:0;
+}
+.topNav {
+    background-color:#4C6B87;
+    background-image:url(resources/background.gif);
+    background-repeat:repeat-x;
+    color:#FFFFFF;
+    float:left;
+    padding:0;
+    width:100%;
+    clear:right;
+    height:2.8em;
+    padding-top:10px;
+    overflow:hidden;
+}
+.bottomNav {
+    margin-top:10px;
+    background-color:#4C6B87;
+    background-image:url(resources/background.gif);
+    background-repeat:repeat-x;
+    color:#FFFFFF;
+    float:left;
+    padding:0;
+    width:100%;
+    clear:right;
+    height:2.8em;
+    padding-top:10px;
+    overflow:hidden;
+}
+.subNav {
+    background-color:#dee3e9;
+    border-bottom:1px solid #9eadc0;
+    float:left;
+    width:100%;
+    overflow:hidden;
+}
+.subNav div {
+    clear:left;
+    float:left;
+    padding:0 0 5px 6px;
+}
+ul.navList, ul.subNavList {
+    float:left;
+    margin:0 25px 0 0;
+    padding:0;
+}
+ul.navList li{
+    list-style:none;
+    float:left;
+    padding:3px 6px;
+}
+ul.subNavList li{
+    list-style:none;
+    float:left;
+    font-size:90%;
+}
+.topNav a:link, .topNav a:active, .topNav a:visited, .bottomNav a:link, .bottomNav a:active, .bottomNav a:visited {
+    color:#FFFFFF;
+    text-decoration:none;
+}
+.topNav a:hover, .bottomNav a:hover {
+    text-decoration:none;
+    color:#bb7a2a;
+}
+.navBarCell1Rev {
+    background-color:#bb7a2a;
+    background-image:url(resources/tab.gif);
+    color:#FFFFFF;
+    margin: auto 5px;
+    border:1px solid #c9aa44;
+}
+
+/*
+    Page header and footer styles
+*/
+.header, .footer {
+    clear:both;
+    margin:0 20px;
+    padding:5px 0 0 0;
+}
+.indexHeader {
+    margin:10px;
+    position:relative;
+}
+.indexHeader h1 {
+    font-size:1.3em;
+}
+.title {
+    color:#2c4557;
+    margin:10px 0;
+}
+.subTitle {
+    margin:5px 0 0 0;
+}
+.header ul {
+    margin:0 0 25px 0;
+    padding:0;
+}
+.footer ul {
+    margin:20px 0 5px 0;
+}
+.header ul li, .footer ul li {
+    list-style:none;
+    font-size:1.2em;
+}
+
+/*
+    Heading styles
+*/
+ul.blockList ul.blockList ul.blockList li.blockList h3 {
+    background-color:#dee3e9;
+    border-top:1px solid #9eadc0;
+    border-bottom:1px solid #9eadc0;
+    margin:0 0 6px -8px;
+    padding:2px 5px;
+}
+ul.blockList ul.blockList li.blockList h3 {
+    padding:0;
+    margin:15px 0;
+}
+ul.blockList li.blockList h2 {
+    padding:0px 0 20px 0;
+}
+
+
+/*
+    Table styles
+*/
+.contentContainer table {
+    border-bottom:1px solid #9eadc0;
+    width:100%;
+    border-collapse: collapse;
+}
+.contentContainer ul li table {
+    width:100%;
+}
+.contentContainer .description table {
+    border-bottom:none;
+}
+.contentContainer ul li table th.colOne, .contentContainer ul li table th.colFirst, .contentContainer ul li table th.colLast {
+    vertical-align:top;
+    padding-right:20px;
+}
+.contentContainer ul li table th.colLast, .contentContainer ul li table td.colLast, .contentContainer ul li table th.colOne, .contentContainer ul li table td.colOne {
+    padding-right:3px;
+}
+.overviewSummary caption, .overviewSummary caption, .contentContainer ul.blockList li.blockList caption, .summary caption {
+    position:relative;
+    text-align:left;
+    background-repeat:no-repeat;
+    color:#FFFFFF;
+    font-weight:bold;
+    clear:none;
+    overflow:hidden;
+    padding:0px;
+    margin:0px;
+}
+caption a:link, caption a:hover, caption a:active, caption a:visited {
+    color:#FFFFFF;
+}
+.overviewSummary caption span, .overviewSummary caption span, .contentContainer ul.blockList li.blockList caption span, .summary caption span {
+    white-space:nowrap;
+    padding-top:8px;
+    padding-left:8px;
+    display:block;
+    float:left;
+    background-color:#bb7a2a;
+    background-image:url(resources/titlebar.gif);
+    height:18px;
+}
+.overviewSummary .tabEnd, .overviewSummary .tabEnd, .contentContainer ul.blockList li.blockList .tabEnd, .summary .tabEnd {
+    width:10px;
+    background-color:#bb7a2a;
+    background-image:url(resources/titlebar_end.gif);
+    background-repeat:no-repeat;
+    background-position:top right;
+    position:relative;
+    float:left;
+}
+.altColor {
+    background-color:#eeeeef;
+}
+.rowColor {
+    background-color:#ffffff;
+}
+.overviewSummary td, .overviewSummary td, .contentContainer ul.blockList li.blockList td, .summary td {
+    text-align:left;
+    padding:3px 3px 3px 7px;
+}
+
+.sampleContainer {
+    clear:both;
+    padding:10px 20px;
+    position:relative;
+}
+
+
+
+.clearfix { zoom: 1; }
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }   
+
+h4.sourcetabbox {
+	margin-top: 20px;
+}
+div.sourcetabbox > div,
+div.sourcetabbox > form > div {
+	border: 1px solid #d0d0d0;
+	border-top: 1px solid #fff;
+	padding-left: 1em;
+	padding-right: 1em;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+

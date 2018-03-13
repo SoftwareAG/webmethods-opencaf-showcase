@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages" globalOnly="true"/>
+	<caf_h:form id="form">
+        <caf_h:oneWayToggleButton id="openDlg" for="dialog" value="Simple Dialog"/>
+    
+        <caf_h:modelessDialog id="dialog" >
+            <f:facet name="other">
+                <button id="other" onclick="CAF.Dialog.alert('Other clicked!', null, {id:'otherDlg'});return false;">Other</button>
+            </f:facet>
+            <f:facet name="submit">
+                <caf_h:asyncCommandButton id="submit" value="Submit" action="#{dialogBean.doSubmitAction}"/>
+            </f:facet>
+            <f:facet name="cancel">
+                <caf_h:oneWayToggleButton id="cancel" for="dialog" value="Cancel" />
+            </f:facet>
+            <div>
+                Here is my dialog content!
+            </div>
+        </caf_h:modelessDialog>
+	</caf_h:form>
+	
+</ui:composition>

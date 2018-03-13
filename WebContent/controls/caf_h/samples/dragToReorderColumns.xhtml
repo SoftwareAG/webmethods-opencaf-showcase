@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages"/>
+    
+    <caf_h:form id="form">
+        
+        <caf_h:dataAsyncTable id="dataTable" value="#{reorderColumnTableBean.tableContentProvider}" 
+            width="100%" var="row" rows="5"
+            headerClass="portlet-section-subheader"
+            footerClass="portlet-section-footer"
+            rowClasses="portlet-section-body,portlet-section-alternate" >
+            <f:facet name="caption">
+                Drag column headers to reorder columns
+            </f:facet>
+            <caf_h:columnStandard id="field1col">
+                <f:facet name="header">
+                    Field1
+                </f:facet>
+                #{row.field1}
+            </caf_h:columnStandard>
+            <h:column id="field2col">
+                <f:facet name="header">
+                    Field2
+                </f:facet>
+                #{row.field2}
+            </h:column>
+            <h:column id="field3col">
+                <f:facet name="header">
+                    Field3
+                </f:facet>
+                Field 3!
+            </h:column>
+            <f:facet name="footer">
+                <caf_h:dataPrevNext id="prevNext" expandToEdges="true"
+                    showAlways="true">&#160;</caf_h:dataPrevNext>
+            </f:facet>
+        </caf_h:dataAsyncTable>
+        <caf_h:dragToReorderColumns id="dragToReoderColumns1" for="dataTable" 
+            columnDisplay="#{reorderColumnTableBean.columnIds}"
+            storePreferences="#{reorderColumnTableBean.storeColumnOrder}" />
+    </caf_h:form>
+    
+</ui:composition>

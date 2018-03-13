@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+        <div id="toggleButtons">
+            <caf_h:oneWayToggleCheckbox id="showPanel" for="hideablePanel" 
+                way="show" value="Show Panel"/>
+
+            <caf_h:oneWayToggleCheckbox id="showDialog" for="modalDialog" 
+                way="show" value="Show Dialog"/>
+        </div>
+        
+        <caf_h:panelHideable id="hideablePanel" visible="false"
+            showEffect="Effect.Appear" hideEffect="Effect.Fade" 
+            style="background-color: blue;color: white;padding: 20px;margin-top: 15px;">
+                Panel Content Here
+        </caf_h:panelHideable>
+        
+        <caf_h:modalDialog id="modalDialog">
+            <f:facet name="title">
+                Dialog Title
+            </f:facet>
+            <f:facet name="cancel">
+                <caf_h:oneWayToggleCheckbox for="modalDialog" value="Cancel" />
+            </f:facet>
+            <div>
+                Here is my dialog content!
+            </div>
+        </caf_h:modalDialog>
+    </caf_h:form>
+    
+    <style type="text/css">
+        #toggleButtons label {
+            margin-right: 15px;
+        }
+    </style>
+</ui:composition>

@@ -1,0 +1,14 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:form id="form">
+	<ui:remove><span id="span1">Anything inside the remove tags will be removed by the Facetlets view handler. </span></ui:remove>
+	<div id="div1">This will stay.</div>
+	<ui:remove>
+		This will all be removed.
+		<h:inputText id="input1" value="Text" />
+		<h:commandButton id="button1" value="Submit" />
+	</ui:remove>
+</h:form>
+</ui:component>

@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:form id="form">
+        <h:messages id="messages"/>
+        
+        <p>
+	       <h:commandLink id="basic_command" action="#{commandBean.doAction}" value="Simple Command Link"></h:commandLink>
+        </p>
+        <p>
+            <h:commandLink id="command_with_params" value="Command With Parameters" action="#{commandBean.doActionWithParams}">
+                <f:param name="param1" value="value1" />
+                <f:param name="param2" value="value2" />
+            </h:commandLink>
+        </p>
+			
+	</h:form>
+
+</ui:composition>

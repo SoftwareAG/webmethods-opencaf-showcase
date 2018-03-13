@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.softwareag/wm_mws_docs/topicList" xmlns:tns="http://www.softwareag/wm_mws_docs/topicList" elementFormDefault="qualified">
+
+    <element name="topics" type="tns:topicsType"/>
+
+    <complexType name="topicsType">
+        <sequence>
+            <element name="topic" type="tns:topicType" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="topicType">
+    	<sequence>
+    		<element name="href" type="string" minOccurs="0"/>
+    		<element name="displayName" type="string"/>
+    		<element name="description" type="string"/>
+            <element name="topic" type="tns:topicType" minOccurs="0" maxOccurs="unbounded"/>
+    	</sequence>
+    </complexType>
+</schema>

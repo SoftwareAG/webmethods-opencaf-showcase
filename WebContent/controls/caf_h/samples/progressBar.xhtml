@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:mws_h="http://webmethods.com/jsf/mws/html"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:form id="form">
+        <div>
+            <label for="#{caf:cid('progress')}"><span class="caf-label-text">Static Progress</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:progressBar id="progress" percentComplete="43" 
+                workMessage="Someone is working here..." />
+        </div>
+        <div>
+            <label for="#{caf:cid('progress2')}"><span class="caf-label-text">Dynamic Progress with updates from the server side</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+	        <caf_h:asyncCommandButton id="startProgress" 
+	            action="#{progressBean.startProgress}" refresh="_none"
+	            value="Start Server-Side Job"
+	            onclick="startJobListener();"
+	            />
+            <caf_h:progressBar id="progress2" visible="false" 
+                hideEffect="Effect.BlindUp"
+                percentComplete="0" 
+                workMessage="Please wait..." />
+        </div>
+
+	    <script type="text/javascript">
+            function startJobListener() {
+                //start listening for server-side openajax events
+                var sub = CAF.OpenAjaxEvents.idToSub["#{caf:cid('openAjax')}"];
+                if (sub) { 
+                    sub.onSubscribe();
+                }
+                var progressBar = CAF.model("#{caf:cid('progress2')}");
+                if (progressBar) {
+                    progressBar.show();
+                }
+            }
+            
+            function handleProgressEvent(eventName, eventBody) {
+	            var progressBar = CAF.model("#{caf:cid('progress2')}");
+			    if (progressBar) {
+			        progressBar.updateProgress(eventBody.completionPercentage, eventBody.msg);
+			        if (eventBody.done) {
+			            //hide the progress bar after 5 second delay
+			            setTimeout(function() {
+			                var progressBar = CAF.model("#{caf:cid('progress2')}");
+			                if (progressBar) {
+			                    progressBar.hide();
+			                }
+			            }, 5000);
+
+                        //unhook the server-side openajax subscription here since we are
+                        // done with the job.  
+                        var sub = CAF.OpenAjaxEvents.idToSub["#{caf:cid('openAjax')}"];
+                        if (sub) { 
+                           sub.onUnsubscribe();
+                        }
+			        } else if (!progressBar.isVisible()) {
+			            progressBar.show();
+			        }
+			    }
+	       }
+	       
+	       
+	    </script>
+        <mws_h:scriptOpenAjax id="openAjax" shouldSubscribe="false" openAjaxTopic="sample.progress2" 
+            value="handleProgressEvent"/>
+	</caf_h:form>
+	
+</ui:composition>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/templates/page_with_syntaxhighlighter.xhtml">
+        <ui:param name="pageTitle" value="UI Tags > h > outputStylesheet" />
+        <ui:define name="body">
+			<script
+				src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shBrushCss.js"
+				type="text/javascript"></script>
+			<ui:include src="samples/includeExamples.xhtml"/>
+             
+            <h4 class="sourcetabbox">Source</h4>
+            <div class="sourcetabbox">
+                <caf_h:form id="tabsform">
+                    <caf_h:toggleTabs id="sourceTabs" value="xhtml">
+                        <caf_f:selectItem id="xhtmlItem" itemValue="xhtml" itemLabel="includeExamples.xhtml" />
+                        <caf_f:selectItem id="jsItem" itemValue="cssFile" itemLabel="style.css" />
+                    </caf_h:toggleTabs>
+                    <caf_h:panelHideable id="xhtml" showEffect="Effect.Appear">
+                        <pre class="brush:xhtml;toolbar:false;highlight:[10]">#{samplesBean.webResource("/controls/h/samples/includeExamples.xhtml")}</pre>
+                    </caf_h:panelHideable>
+                    <caf_h:panelHideable id="cssFile" showEffect="Effect.Appear">
+                        <pre class="brush:css;toolbar:false">#{samplesBean.webResource("/resources/css/style.css")}</pre>
+                    </caf_h:panelHideable>
+                </caf_h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

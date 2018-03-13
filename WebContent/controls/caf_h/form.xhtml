@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+	<ui:composition template="/templates/page_with_syntaxhighlighter.xhtml">
+		<ui:param name="pageTitle" value="UI Tags > caf_h > form" />
+		<ui:define name="body">
+
+            <ui:include src="samples/form.xhtml"/>
+             
+            <h4 class="sourcetabbox">Source</h4>
+            <div class="sourcetabbox">
+                <caf_h:form id="tabsform">
+	                <caf_h:toggleTabs id="sourceTabs" value="xhtml">
+	                    <caf_f:selectItem id="xhtmlItem" itemValue="xhtml" itemLabel="form.xhtml" />
+	                    <caf_f:selectItem id="javaItem1" itemValue="java1" itemLabel="Input.java"/>
+                        <caf_f:selectItem id="javaItem2" itemValue="java2" itemLabel="Command.java"/>
+	                </caf_h:toggleTabs>
+	                <caf_h:panelHideable id="xhtml" showEffect="Effect.Appear">
+	                    <pre class="brush:xhtml;toolbar:false;highlight:[8,25]">#{samplesBean.webResource("/controls/caf_h/samples/form.xhtml")}</pre>
+	                </caf_h:panelHideable>
+	                <caf_h:panelHideable id="java1" showEffect="Effect.Appear">
+	                    <pre class="brush:java;toolbar:false">#{samplesBean.cpResource("/caf/war/wm_opencaf_showcase/controls/caf_h/Input.java")}</pre>
+	                </caf_h:panelHideable>
+                    <caf_h:panelHideable id="java2" showEffect="Effect.Appear">
+                        <pre class="brush:java;toolbar:false">#{samplesBean.cpResource("/caf/war/wm_opencaf_showcase/controls/caf_h/Command.java")}</pre>
+                    </caf_h:panelHideable>
+                </caf_h:form>
+            </div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

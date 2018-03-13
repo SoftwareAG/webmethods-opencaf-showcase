@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:cc="http://java.sun.com/jsf/composite">
+	  
+	<cc:interface>
+    	<cc:attribute name="userNameLabel" />
+    	<cc:attribute name="userName" />
+    	<cc:attribute name="emailLabel" />
+    	<cc:attribute name="email" />
+ 		<cc:attribute name="password" />
+ 
+   		<cc:attribute name="buttonText" />
+    	<cc:attribute name="buttonAction" 
+    		method-signature="java.lang.String action()" />
+    </cc:interface>
+ 
+    <cc:implementation>
+		<h:form id="compositeExampleForm">
+			<h:messages id="message" for="textPanel" style="color:red;" />
+	 
+			<h:panelGrid columns="2" id="textPanel" >
+				<span id="nameLabel" style="float:right">#{cc.attrs.userNameLabel}: </span>
+				<h:inputText id="name" value="#{cc.attrs.userName}" />
+	 
+	 			<span id="passwordLabel" style="float:right">Password:</span> 
+	 			<h:inputSecret id="password" value="cc.attrs.password"></h:inputSecret>
+	 			
+				<span id="emailLabel" style="float:right">#{cc.attrs.emailLabel}: </span>
+				<h:inputText id="email" value="#{cc.attrs.email}" />
+								
+			</h:panelGrid>
+	 
+			<h:commandButton id="button1" action="#{cc.attrs.buttonAction}" 
+				value="#{cc.attrs.buttonText}">
+				<f:ajax render="compositeExampleForm" execute="compositeExampleForm"></f:ajax>
+			</h:commandButton>
+		</h:form>
+    </cc:implementation>
+</html>

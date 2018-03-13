@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+	<h:dataTable id="table1" value="#{dataTableBean.table}"
+		width="100%" var="row" rows="5"
+		headerClass="portlet-section-subheader"
+		footerClass="portlet-section-footer"
+		rowClasses="portlet-section-body,portlet-section-alternate">
+
+		<h:column id="field1">
+			<f:facet name="header">
+                   Field1
+               </f:facet>
+               #{row.field1}
+           </h:column>
+
+		<h:column id="field2">
+			<f:facet name="header">
+                   Field2
+               </f:facet>
+               #{row.field2}
+           </h:column>
+		<!-- Add default JSF pagination -->
+	</h:dataTable>
+
+
+</ui:composition>

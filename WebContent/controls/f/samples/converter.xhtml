@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    <caf_h:form id="form" defaultCommand="button1">
+        <div>
+            <caf_h:outputLabel id="label1" for="input1">Converter #1: (Value before conversion is "#{inputStringBean.value}")</caf_h:outputLabel>
+        </div>
+        <div>
+            <caf_h:inputText id="input1" value="#{inputStringBean.value}" width="input30" >
+                <f:converter binding="#{converterBean.myConverter}"/>
+            </caf_h:inputText>
+        </div>
+        <h:message for="input1" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+
+        <div>
+            <caf_h:outputLabel id="label2" for="input2">Converter #2: (Value before conversion is "#{inputBean.value}")</caf_h:outputLabel>
+        </div>
+        <div>
+            <caf_h:inputText id="input2" value="#{inputBean.value}" width="input30" >
+                <f:converter converterId="caf.war.wm_opencaf_showcase.converter.custom"/>
+            </caf_h:inputText>
+        </div>
+        <h:message for="input2" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+        
+        <p>
+           <h:commandButton id="button1" value="Submit" />
+        </p>
+        
+    </caf_h:form>
+    
+</ui:composition>

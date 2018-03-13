@@ -1,0 +1,25 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"	
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<caf_h:oneWayToggleButton value="Open Themed Dialog"
+		id="oneWayToggleButton1" for="modalDialog" />
+	<caf_h:modalDialog id="modalDialog" isMoveable="true" rendered="true" progressFlashOnComplete="false" width="300px" styleClass="">
+		<span>Caf Model dialog</span> 
+		<f:facet name="title">Basic dialog</f:facet>
+		<f:facet name="submit">
+			<caf_h:asyncCommandButton value="Apply" id="button" />
+		</f:facet>
+		<f:facet name="cancel">
+			<caf_h:oneWayToggleButton value="Cancel" for="modalDialog"
+				id="oneWayToggleButton" />
+		</f:facet>
+		<f:facet name="other"></f:facet>
+	</caf_h:modalDialog>
+	<div id="dialog" title="Basic dialog">
+	  <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+	</div>
+</html>

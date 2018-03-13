@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CAF Showcase</title>
+<script type="text/javascript">
+//<![CDATA[
+	targetPage = "" + window.location.search;
+	if (targetPage != "" && targetPage != "undefined")
+		targetPage = targetPage.substring(1);
+	if (targetPage.indexOf(":") != -1)
+		targetPage = "undefined";
+    
+	function loadFrames() {
+		if (targetPage != "" && targetPage != "undefined")
+			top.topicFrame.location = top.targetPage;
+	}
+	window.onhashchange = function() {
+	   return false;
+	}
+	var changeHash = function(e) {
+	   if(e.source.newPathName) {
+	       top.history.pushState("", "", "?" + e.source.newPathName);
+	   }
+	} 
+	
+    // Listen to messages sent from the content iframe
+    var receiveMessage = function receiveMessage(e){
+        var url = window.location.href,
+            url_parts = url.split("/"),
+            allowed = url_parts[0] + "//" + url_parts[2];
+
+        // Only react to messages from same domain as current document
+        if (e.origin !== allowed) return;
+        // Handle the message
+        switch (e.data) {
+            case 'iframe_redir': changeHash(e); break;
+        }
+         
+    };
+    window.addEventListener("message", receiveMessage, false);           
+
+//]]>	
+</script>
+</head>
+<frameset cols="20%,80%" title="Documentation frame"
+	onload="top.loadFrames()">
+	<frameset rows="100%" title="Left frames" onload="top.loadFrames()">
+		<frame src="alltopics-frame.xhtml" name="topicsFrame"
+			title="All Topics" />
+	</frameset>
+	<frame src="overview-summary.xhtml" name="topicFrame"
+		title="Topics Summary" scrolling="yes" />
+	<noframes>
+		<body>
+			<noscript>
+				<div>JavaScript is disabled on your browser.</div>
+			</noscript>
+			<h2>Frame Alert</h2>
+			<p>
+				This document is designed to be viewed using the frames feature. If
+				you see this message, you are using a non-frame-capable web client.
+				Link to <a href="overview-summary.xhtml">Non-frame version</a>.
+			</p>
+		</body>
+	</noframes>
+</frameset>
+</html>

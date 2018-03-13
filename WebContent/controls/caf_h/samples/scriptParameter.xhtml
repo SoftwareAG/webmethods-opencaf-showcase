@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+
+        <caf_h:outputButton id="button1">Say Hi</caf_h:outputButton>
+
+        <caf_h:scriptCustom id="custom1" for="button1" event="onclick" 
+            code="CAF.Dialog.alert(msg, null, {id: 'hiDialog'});&#10;return false;" >
+            <caf_h:scriptParameter name="msg" 
+                value="Hello from a custom script parameter." 
+                valueType="string"/>
+        </caf_h:scriptCustom>
+
+    </caf_h:form>
+
+</ui:composition>

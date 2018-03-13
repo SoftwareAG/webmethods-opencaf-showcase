@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<caf_h:formattedMessages id="messages" globalOnly="true"/>
+
+	<caf_h:form id="form">
+        <div style="margin-top: 10px;" class="clearfix">
+            <div style="float:left;width: 25%">
+		        <caf_h:panelPropertyGroup id="masterGroup" label="Master">
+                    <caf_h:selectOneListbox id="masterListbox" width="input100" 
+                      value="#{masterDetailsBean.selectedRowId}" >
+                      <caf_f:selectItems value="#{masterDetailsBean.listboxChoices}"/>
+                    </caf_h:selectOneListbox>
+		        </caf_h:panelPropertyGroup>
+            </div>
+            <div style="float:left;width: 74%">
+		        <caf_h:panelHideable id="detailsPanel" visible="true">
+		            <caf_h:panelPropertyGroup id="detailsGroup" label="Details" rendered="#{masterDetailsBean.detailsRow != null}">
+		                <caf_h:panelPropertyLine label="Field1">
+		                    <caf_h:inputText id="field1Input" value="#{masterDetailsBean.detailsRow.field1}"
+		                        width="input100"/>
+		                </caf_h:panelPropertyLine>
+		                <caf_h:panelPropertyLine label="Field2">
+		                    <caf_h:inputText id="field2Input" value="#{masterDetailsBean.detailsRow.field2}"
+		                        width="input100">
+                                <caf_f:validateFormattedLongRange minimum="0" maximum="1000" />
+		                    </caf_h:inputText>
+		                </caf_h:panelPropertyLine>
+		            </caf_h:panelPropertyGroup>
+		        </caf_h:panelHideable>
+            </div>
+        </div>
+              
+        <caf_h:raiseOnChange for="masterListbox" command="updateDataRow"/>
+        <caf_h:asyncCommandHidden id="updateDataRow" action="#{masterDetailsBean.updateDetailsRow}" 
+            refresh="detailsPanel"/>
+
+	</caf_h:form>
+</ui:composition>

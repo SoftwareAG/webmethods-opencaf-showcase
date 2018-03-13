@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+	<h:form id="form">
+        <f:event listener="#{componentSystemEventListenerBean.listener}" type="preRenderView"/>
+	
+        <h:inputText id="input1">
+            <f:event listener="#{componentSystemEventListenerBean.listener}" type="preRenderComponent"/>
+            <f:event listener="#{componentSystemEventListenerBean.listener}" type="postAddToView"/>
+            <f:event listener="#{componentSystemEventListenerBean.listener}" type="preValidate"/>
+            <f:event listener="#{componentSystemEventListenerBean.listener}" type="postValidate"/>
+        </h:inputText>
+        
+        <h:commandButton id="button1" value="Action #1">
+        </h:commandButton>
+	</h:form>
+
+    <caf_h:formattedMessages id="messages" />
+
+</ui:composition>

@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    
+    <h:outputScript name="jsf.js" library="javax.faces" />
+    
+    <caf_h:form id="form">
+        <caf_h:formattedMessages id="messages" globalOnly="false"/>
+        <div>
+            <h4>Drag and Drop a single txt file</h4>
+            <caf_h:inputDragAndDropFile id="fileInput" value="#{inputDragAndDropFileBean.value}" multiple="false" 
+                    execute="@form" render="messages"
+                    action="#{inputDragAndDropFileBean.doUpload}" >
+                <caf_f:validateFile acceptFileExtensions="txt" />
+            </caf_h:inputDragAndDropFile>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <h4>Drag and Drop multiple png, txt or zip files</h4>
+            <caf_h:inputDragAndDropFile id="fileInput2" value="#{inputDragAndDropFileBean.value2}"
+                    execute="@form" render="messages"
+                    action="#{inputDragAndDropFileBean.doUpload2}" >
+                <caf_f:validateFile acceptFileExtensions="png,txt,zip" />
+            </caf_h:inputDragAndDropFile>
+        </div>
+
+        <div style="margin-top: 10px;">
+            <h4>Drag and Drop multiple png, txt or zip files (Custom onerror function)</h4>
+            <caf_h:inputDragAndDropFile id="fileInput3"
+                    execute="@form" render="messages"
+                    action="#{inputDragAndDropFileBean.doUpload3}" 
+                    onerror="Showcase_onerror">
+                <caf_f:validateFile acceptFileExtensions="png,txt,zip" />
+            </caf_h:inputDragAndDropFile>
+        </div>
+        
+    </caf_h:form>
+
+    <script>
+        window.Showcase_onerror = function(data) {
+            var msg = "";
+            if (data.errorName) {
+               msg += "<b>" + data.errorName + ":</b> ";
+            }
+            if (data.errorMessage) {
+               msg += data.errorMessage;
+            }
+            if (msg == "") {
+               msg = txt.escapeHTML();
+            }
+            CAF.Dialog.alert(msg, null, {
+                onShow: function(element) {
+                    // show on top of broken modal dialogs
+                    element.style.zIndex = "9999";
+                },
+                id: data.source.id + "__errorDlg"
+            });
+        };
+    </script>
+</ui:composition>

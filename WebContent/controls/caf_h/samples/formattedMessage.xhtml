@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    
+    <caf_h:form id="form">
+       
+        <div>
+            <label for="#{caf:cid('input')}"><span class="caf-label-text">Text Input</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputText id="input" required="true" />
+            <caf_h:formattedMessage id="inputmsg" for="input"/>
+        </div>
+        <caf_h:asyncCommandButton id="button1" value="Raise Message"
+               action="#{messageBean.doAction}"/>        
+
+    </caf_h:form>
+    
+</ui:composition>

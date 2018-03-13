@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+    xmlns:cafp_f="http://webmethods.com/jsf/cafp/core" 
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+	    <ui:remove> schedule stylesheet file to load in the "head" target </ui:remove>
+	    <h:outputStylesheet id="stylesheet1" library="caf.showcase" name="test.css" />
+	    
+	    <ui:remove> schedule javascript file to load in the "body" target </ui:remove>
+	    <h:outputScript id="script1" library="caf.showcase" name="test.js" target="body"/>
+	       
+	    <p id="stylesheetTest" class="showcaseTest">
+	        DIV using styles from a CSS stylesheet loaded from a resource library!
+	    </p>
+	       
+	    <p>
+	        <a id="javascriptTest" href="javascript:void(0)" onclick="return showcaseTest();">Click here</a>
+	    </p>
+	
+	    <ui:remove> 
+	        render any controls in the "head" target to reproduce the 
+	        behavior of the h:head tag in a portlet context.
+	    </ui:remove>
+	    <cafp_h:targetComponents target="head"/>
+	
+	    <ui:remove> 
+	        render any controls in the "body" target to reproduce the 
+	        behavior of the h:body tag in a portlet context..
+	    </ui:remove>
+	    <cafp_h:targetComponents target="body"/>
+    </caf_f:view>
+
+</ui:composition>
+
+

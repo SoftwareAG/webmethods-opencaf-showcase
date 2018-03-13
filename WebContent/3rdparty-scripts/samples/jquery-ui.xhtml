@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <!-- Load JQuery (from CDN or your own server if you prefer) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        //Use the noConflict api so it doesn't interfere with the prototypejs library
+        var $jq = jQuery.noConflict();
+    </script>    
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+      
+    <caf_h:form id="form">
+    
+        <div>
+            <label for="#{caf:cid('input')}">Autocomplete</label>
+        </div>
+        <div>
+            <caf_h:inputText id="inputText"/>
+        </div>
+    
+        <div>
+            <label for="#{caf:cid('input')}">Dialog</label>
+        </div>
+        <button id="opener">Open Dialog</button>
+        <div id="dialog" title="Basic dialog">
+            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+        </div>
+    </caf_h:form>
+    
+    <script type="text/javascript">
+        //Do some simple JQuery calls.
+        // NOTE: The function param causes the $ variable to be a shortcut to
+        //   jQuery in this block instead of variable of the same name from
+        //   the prototypejs library. 
+        // See: http://learn.jquery.com/using-jquery-core/avoid-conflicts-other-libraries/
+        $jq(function($) {
+            //apply some styling to the label elements
+	        $("label").wrapInner('<span class="caf-label-text"></span>')
+	           .after('<span class="caf-label-separator">:</span>')
+        
+            //prepare the autocomplete 
+            var availableTags = [
+				"ActionScript",
+				"AppleScript",
+				"Asp",
+				"BASIC",
+				"C",
+				"C++",
+				"Clojure",
+				"COBOL",
+				"ColdFusion",
+				"Erlang",
+				"Fortran",
+				"Groovy",
+				"Haskell",
+				"Java",
+				"JavaScript",
+				"Lisp",
+				"Perl",
+				"PHP",
+				"Python",
+				"Ruby",
+				"Scala",
+				"Scheme"
+            ];
+            $("##{caf:scid('inputText')}").autocomplete({
+                source: availableTags
+            });
+            
+            //prepare the dialog
+            $("#dialog").dialog({
+				autoOpen: false,
+				show: {
+	       			effect: "blind",
+    				duration: 1000
+				},
+				hide: {
+			     	effect: "explode",
+				    duration: 1000
+				}
+			});
+            $("#opener").click(function() {
+                $("#dialog").dialog( "open" );
+                return false;
+            });
+        });
+    </script>
+    
+</ui:composition>

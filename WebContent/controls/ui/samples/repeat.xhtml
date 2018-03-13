@@ -1,0 +1,10 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ul id="repeat1">
+		<ui:repeat var="fruit" value="#{selectInputBean.fruitItems}">
+			<li><h:outputText value="#{fruit.value}"/></li>
+		</ui:repeat>
+	</ul>
+</ui:component>

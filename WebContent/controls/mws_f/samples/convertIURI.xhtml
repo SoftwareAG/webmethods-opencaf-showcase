@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    <caf_h:form id="form">
+        <div>
+            <label for="#{caf:cid('file')}"><span class="caf-label-text">Convert IURI</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputText id="uri1" value="#{convertIURIBean.value}" width="input30">
+                <mws_f:convertIURI />
+            </caf_h:inputText>
+        </div>
+        <h:message for="uri1" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+        
+        <p>
+           <caf_h:commandButton id="button1" value="Submit" />
+        </p>
+        
+    </caf_h:form>
+    
+</ui:composition>

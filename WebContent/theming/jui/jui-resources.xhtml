@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf="http://webmethods.com/jsf/caf/fn"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/js/themes/common/jquery.js" />
+	<!-- DataTables -->
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/js/themes/jui/jquery.dataTables.js" />
+
+	<!-- Two extra files required to use JUI Theme -->
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/js/themes/jui/dataTables.jqueryui.js" />
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.requestContextPath}/theming/jui/lib/dataTables.jqueryui.css" />
+
+	<link rel="stylesheet" type="text/css"
+		href="#{facesContext.externalContext.requestContextPath}/theming/jui/lib/jquery-ui.structure.css" />
+	
+	<!-- jQuery UI for testing purposes -->
+	<script type="text/javascript"
+		src="#{facesContext.externalContext.requestContextPath}/js/themes/jui/jquery-ui.js" />
+</ui:composition>

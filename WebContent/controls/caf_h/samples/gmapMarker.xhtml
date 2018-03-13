@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    
+    <caf_h:form id="form">
+        <div style="margin-top: 10px;" class="clearfix">
+            <div style="float:left; width:50%">
+                <caf_h:gmap id="map" width="100%" height="400px" 
+                    latitude="#{gmapMarkerBean.latitudeReadOnly}" longitude="#{gmapMarkerBean.longitudeReadOnly}"
+                    zoom="#{gmapMarkerBean.zoomReadOnly}"
+                    type="#{gmapMarkerBean.mapTypeReadOnly}">
+
+                    <caf_h:gmapMarkerGroup id="gMarkerGroup">
+                        <caf_h:gmapMarker id="gMarker" 
+                            bounceGravity="3" clickable="true" draggable="true" icon="green" 
+                            initialAddress="Washington, DC" 
+                            latitude="#{gmapMarkerBean.markerOneLatitude}" longitude="#{gmapMarkerBean.markerOneLongitude}" 
+                            selected="#{gmapMarkerBean.markerOneSelected}" 
+                            selectedImage="cyan" title="Marker One">
+                            <span>Marker One!</span>
+                        </caf_h:gmapMarker>
+                        <caf_h:gmapMarker id="gMarker1" 
+                            latitude="40.824202" longitude="-73.913269"/>
+                        <caf_h:gmapMarker id="gMarker2" 
+                            clickable="true" icon="blue" 
+                            latitude="42.373764" longitude="-71.038971" 
+                            selectedImage="purple" title="Marker Three">
+                            <h:graphicImage id="htmlGraphicImage" value="/resources/boston.jpg"/>
+                            <span>Boston, MA</span>
+                        </caf_h:gmapMarker>
+                    </caf_h:gmapMarkerGroup>
+                </caf_h:gmap>
+            </div>
+            <div style="float:right; width:48%">
+                <caf_h:disjointForm id="newmarker">
+                    <caf_h:panelPropertyGroup id="markersGroup" label="Marker One Options">
+                        <caf_h:panelPropertyLine id="propertyLine1" label="Marker One Latitude">
+                            <caf_h:inputText value="#{gmapMarkerBean.markerOneLatitude}">
+                                <caf_f:convertDouble/>
+                            </caf_h:inputText>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine2" label="Marker One Longitude">
+                            <caf_h:inputText value="#{gmapMarkerBean.markerOneLongitude}">
+                                <caf_f:convertDouble/>
+                            </caf_h:inputText>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine3" label="Marker One Selected">
+                            <caf_h:inputText value="#{gmapMarkerBean.markerOneSelected}">
+                                <caf_f:convertBoolean/>
+                            </caf_h:inputText>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelSubmitGroup id="propertySubmit">
+                            <f:facet name="submit">
+                                <caf_h:asyncCommandButton id="updateMarkers" refresh="map" value="Update"/>
+                            </f:facet>
+                        </caf_h:panelSubmitGroup>
+                    </caf_h:panelPropertyGroup>
+                </caf_h:disjointForm>
+            
+                <caf_h:disjointForm id="mapform">
+                    <caf_h:panelPropertyGroup id="mapPropGroup" label="Map Options">
+                        <caf_h:panelPropertyLine id="propertyLine" label="Gmaps Api Key">
+                            <caf_h:inputText value="#{gmapMarkerBean.gmapsApiKey}" width="input20"/>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine4" label="Zoom">
+                            <caf_h:inputText id="zoom" value="#{gmapMarkerBean.zoom}" width="input20">
+                                <caf_f:convertInteger/>
+                                <f:validateLongRange minimum="0" maximum="20"/>
+                            </caf_h:inputText>
+                            <button onclick="return applyZoomToMap();">
+                                Client-Side Update
+                            </button>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine5" label="Map Type">
+                            <caf_h:selectOneMenu disabledClass="disabled" enabledClass="enabled" id="mapType" value="#{gmapMarkerBean.mapType}" width="input20">
+                                <caf_f:selectItem id="selectItem" itemValue="G_NORMAL_MAP"/>
+                                <caf_f:selectItem id="selectItem1" itemValue="G_SATELLITE_MAP"/>
+                                <caf_f:selectItem id="selectItem2" itemValue="G_HYBRID_MAP"/>
+                            </caf_h:selectOneMenu>
+                            <button onclick="return applyMapTypeToMap();" style="margin-left: 7px;">
+                                Client-Side Update
+                            </button>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="submitLine" style="margin-top: 15px;">
+                            <caf_h:asyncCommandButton id="button" refresh="map" value="Server-Side Update"/>
+                        </caf_h:panelPropertyLine>
+                    </caf_h:panelPropertyGroup>
+                </caf_h:disjointForm>                
+            </div>
+        </div>
+    </caf_h:form>
+
+    
+    <script type="text/javascript">
+        function applyZoomToMap() {
+            var mapModel = CAF.model('#{caf:cid('map')}');
+            var zoomModel = CAF.model("#{caf:cid('zoom')}");
+            var newZoom = zoomModel.getValue();
+            //apply the new value to the map
+            mapModel.setZoom(newZoom);
+            return false;
+        }
+        function applyMapTypeToMap() {
+            var mapModel = CAF.model('#{caf:cid('map')}');
+            var mapTypeModel = CAF.model("#{caf:cid('mapType')}");
+            var newMapType = mapTypeModel.getValue();
+            //apply the new value to the map
+            mapModel.setMapType(newMapType);
+            return false;
+        }
+    </script>
+    
+</ui:composition>

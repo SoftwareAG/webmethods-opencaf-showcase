@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<app-nav xmlns="http://www.webmethods.com/schema/appNavRule.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.webmethods.com/schema/appNavRule.xsd http://www.webmethods.com/schema/appNavRule.xsd">
+	<resource-bundle>caf.war.wm_opencaf_showcase.AppResource</resource-bundle>
+	<page>
+		<id>/index.view</id>
+		<title>Home</title>
+		<url>/wm_opencaf_showcase</url>
+
+		<page>
+			<id>/UITags</id>
+			<title>UI Tags</title>
+			<url>javascript:void(0)</url>
+			<page>
+				<id>/controls/caf_h/breadcrumbs.xhtml</id>
+				<title>Breadcrumbs</title>
+				<url>/wm_opencaf_showcase/controls/caf_h/breadcrumbs.xhtml</url>
+			</page>
+			<page>
+				<id>/controls/caf_h/staticMenus.xhtml</id>
+				<title>Static Menus</title>
+				<url>/wm_opencaf_showcase/controls/caf_h/staticMenus.xhtml</url>
+			</page>
+			<page>
+				<id>/controls/caf_h/popupMenus.xhtml</id>
+				<title>Popup Menus</title>
+				<url>/wm_opencaf_showcase/controls/caf_h/popupMenus.xhtml</url>
+			</page>
+			<page>
+				<id>/controls/caf_h/toggleMenus.xhtml</id>
+				<title>Toggle Menus</title>
+				<url>/wm_opencaf_showcase/controls/caf_h/toggleMenus.xhtml</url>
+			</page>
+		</page>
+		<page>
+			<id>/UIPatterns</id>
+			<title>UI Patterns</title>
+			<url>javascript:void(0)</url>
+			<page>
+				<id>/UIPatterns/PageId7</id>
+				<title>Master Details</title>
+				<url>/wm_opencaf_showcase/patterns/master-details.xhtml</url>
+			</page>
+		</page>
+	</page>
+</app-nav>
+	
+	

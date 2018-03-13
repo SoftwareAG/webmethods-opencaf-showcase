@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>wm_opencaf_showcase</display-name>
+  <context-param>
+    <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
+    <param-value>/WEB-INF/errortest.taglib.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value></param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>com.webmethods.caf.faces.servlet.CAFFacesServlet</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
+  <context-param>
+    <description>State saving method: &quot;client&quot; or &quot;server&quot; (= default) See JSF Specification 2.5.2</description>
+    <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
+    <param-value>client</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.webmethods.caf.faces.view.FILTER</param-name>
+    <param-value>.*\.view</param-value>
+  </context-param>
+  <context-param>
+    <param-name>com.webmethods.caf.faces.view.CACHE</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <context-param>
+    <description>Formats the HTML output</description>
+    <param-name>com.webmethods.caf.faces.context.PRETTY_PRINT</param-name>
+    <param-value>false</param-value>
+  </context-param>
+  <context-param>
+    <description>Since CAF uses its own FacesServlet impl, this flag is needed to force the faces-config to be loaded</description>
+    <param-name>com.sun.faces.forceLoadConfiguration</param-name>
+    <param-value>true</param-value>
+  </context-param>
+  <listener>
+    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>com.webmethods.caf.faces.application.CAFConfigureListener</listener-class>
+  </listener>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.view</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <description>Compresses the response stream to reduce the network bandwith usage.</description>
+    <filter-name>CompressionFilter</filter-name>
+    <filter-class>com.webmethods.caf.faces.servlet.GZIPFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CompressionFilter</filter-name>
+    <url-pattern>*.css</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CompressionFilter</filter-name>
+    <url-pattern>*.js</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CompressionFilter</filter-name>
+    <url-pattern>*.view</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+    <filter-name>CompressionFilter</filter-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </filter-mapping>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Pages</web-resource-name>
+      <url-pattern>*.view</url-pattern>
+      <url-pattern>*.jsp</url-pattern>
+      <url-pattern>*.html</url-pattern>
+      <url-pattern>*.htm</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>Everyone</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <welcome-file-list>
+    <welcome-file>index.xhtml</welcome-file>
+  </welcome-file-list>
+  <resource-env-ref>
+    <description>Content Repository</description>
+    <resource-env-ref-name>jcr/repository</resource-env-ref-name>
+    <resource-env-ref-type>javax.jcr.Repository</resource-env-ref-type>
+  </resource-env-ref>
+  <security-role>
+    <description></description>
+    <role-name>showcase_role</role-name>
+  </security-role>
+</web-app>

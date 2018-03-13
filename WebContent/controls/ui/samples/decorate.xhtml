@@ -1,0 +1,18 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:form id="form">
+	<strong id="before1">Text before decorate tag stays</strong>
+	<ui:decorate template="/controls/ui/samples/template2.xhtml">
+		<ui:define name="first">
+			<span id="banana1">banana</span>
+		</ui:define>
+
+		<ui:define name="second">
+			<h:inputText id="input1" type="text" class="input10"></h:inputText>
+		</ui:define>
+	</ui:decorate>
+	<strong id="after1">Test after decorate tag stays</strong>
+</h:form>
+</ui:component>

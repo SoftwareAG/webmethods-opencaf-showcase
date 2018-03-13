@@ -1,0 +1,107 @@
+<caf_f:view xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core" 
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" 
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+    <caf_f:design-time-attribute name="portlet" value="showcase"/>
+    <ui:remove>For demo of f:viewParam tag</ui:remove>
+    <f:metadata>
+        <ui:remove> for the f:metadata sample </ui:remove>
+        <f:viewParam name="meta" value="#{metadataBean.emptyValue}"></f:viewParam>
+        
+        <ui:remove> for the f:viewAction and f:viewParam samples </ui:remove>
+        <f:viewParam name="username1" value="#{fakeUserBean.username}" />
+        <f:viewParam name="pw1" value="#{fakeUserBean.password}" />
+        <f:viewAction onPostback="true" if="#{not empty param.username1 || not empty param.pw1}" action="#{fakeUserBean.checkPassWordLength}" />        
+    </f:metadata>
+    
+    <style>
+        #container { 
+		  width:100%; 
+		  border:0; 
+		  margin:0 auto; 
+		  position:relative; 
+		}
+		
+		#sidebar { 
+			position:absolute; 
+			left:0; 
+			top:0; 
+			width:350px; 
+			background-color: white;
+			border: 1px solid #c0c0c0;
+			margin: 5px;
+			margin-top: 0px;
+		}
+		
+        #main { 
+          margin-top: 5px;
+          margin-bottom: 5px;
+		  margin-left:365px; 
+		  height: 100%; 
+		  overflow: auto;
+		  background-color: white;
+		  border: 1px solid #c0c0c0;
+        }
+    </style>   
+    
+    <div id="container">
+        <div id="sidebar">
+            <h1 class="bar">All Topics</h1>
+            <div class="indexContainer" style="padding: 10px">
+               <caf_h:form id="topicsForm">
+               
+		           <caf_h:inputFilter id="filter" for="topicList" width="input100" showGoButton="true"/>
+		           <caf_h:dataTree id="topicList" 
+		                var="topic" value="#{allTopics.topicTree}"
+		                width="100%" 
+		                rowClasses="portlet-section-body,portlet-section-alternate" 
+		                progressFlashOnComplete="false"
+		                progressDelay="3000"
+		                >
+		                <caf_h:dataTreeToggle id="treeToggle">
+                           <caf_f:logicIf value='#{fn:startsWith(topic.link, "http")}'>
+                                <a href="#{topic.link}"><i>#{topic.displayName}</i></a>
+                           </caf_f:logicIf>
+                           <caf_f:logicElse value="true">
+                               <ui:fragment rendered="#{not empty topic.link}">
+                                   <caf_h:commandLink refresh="pageBody" action="#{ShowcaseDefaultviewView.switchPage}">
+                                      <f:param name="targetPage" value="/#{topic.link}"/>
+                                      <i>#{topic.displayName}</i>
+                                   </caf_h:commandLink>
+                               </ui:fragment>
+                               <ui:fragment rendered="#{empty topic.link}">
+                                   <i>#{topic.displayName}</i>
+                               </ui:fragment>
+                           </caf_f:logicElse>
+		                </caf_h:dataTreeToggle>
+		            </caf_h:dataTree>
+               </caf_h:form>
+           </div>
+        </div>
+        <div id="main">
+            <ui:remove>
+            <caf_h:form id="topNavForm">        
+                <div class="topNav">
+                    <ul class="navList" title="Navigation">
+                        <li>
+                            <caf_h:commandLink refresh="pageBody" action="#{ShowcaseDefaultviewView.switchPage}">
+                               <f:param name="targetPage" value="/Showcase/overview.xhtml"/>
+                                Overview
+                            </caf_h:commandLink>                   
+                        </li>
+                    </ul>
+                </div>
+            </caf_h:form>
+            </ui:remove>
+        
+            <caf_h:panelBlock id="pageBody">
+                <ui:include src="#{empty Showcase.targetSample ? '/Showcase/overview.xhtml' : Showcase.targetSample}"/>
+            </caf_h:panelBlock>
+        </div>
+    </div>
+    
+</caf_f:view>

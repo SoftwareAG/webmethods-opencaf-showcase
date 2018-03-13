@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+	<caf_h:form id="form" enctype="multipart/form-data">
+        <div>
+            <label for="#{caf:cid('file')}"><span class="caf-label-text">Validate File Extension</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputFile id="file1" value="#{inputFileBean.value}">
+                <caf_f:validateFile acceptFileExtensions="zip,gif"/>
+            </caf_h:inputFile>
+        </div>
+        <h:message id="file1msg" for="file1" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+        
+        <div style="margin-top: 10px;">
+            <label for="#{caf:cid('file2')}"><span class="caf-label-text">Validate File Size</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputFile id="file2" value="#{inputFileBean.value2}">
+                <caf_f:validateFile maxFileSize="1536" />
+            </caf_h:inputFile>
+        </div>
+        <h:message id="file2msg" for="file2" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+        
+        <p>
+	       <caf_h:commandButton id="button1" value="Upload"
+	           action="#{inputFileBean.doUpload}"/>
+        </p>
+        
+	</caf_h:form>
+	
+</ui:composition>

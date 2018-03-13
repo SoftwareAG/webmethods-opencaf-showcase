@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+        
+        <p>
+	        <caf_h:asyncCommandButton id="button1" 
+	            value="Change to Panel One"
+	            action="#{stackPanelBean.doFirst}"  />
+	        <caf_h:asyncCommandButton id="button2" 
+	            value="Change to Panel Two"
+	            action="#{stackPanelBean.doSecond}"  />
+	        <caf_h:asyncCommandButton id="button3" 
+	            value="Change to Panel Three"
+	            action="#{stackPanelBean.doThird}"  />
+        </p>
+
+        <caf_h:panelStack id="stack" value="#{stackPanelBean.value}">
+            <caf_h:panelBlock id="first" styleClass="stack-block">
+                First Panel
+            </caf_h:panelBlock>
+            <caf_h:panelBlock id="second" styleClass="stack-block">
+                Second Panel
+            </caf_h:panelBlock>
+            <caf_h:panelBlock id="third" styleClass="stack-block">
+                Third Panel
+            </caf_h:panelBlock>
+        </caf_h:panelStack>
+
+    </caf_h:form>
+    
+    <style type="text/css">
+        .stack-block {
+            margin-left: 25px;
+            margin-right: 25px;
+            height:150px;
+            border: 2px solid blue;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;        
+        }
+    </style>
+</ui:composition>
+

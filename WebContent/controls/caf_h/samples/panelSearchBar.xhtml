@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html" 
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <caf_h:form id="form">
+        
+        <caf_h:panelSearchBar id="searchBar"
+            useAsyncGoButton="true"
+            asyncGoRefresh="torefresh"
+            searchOptionsManager="#{searchBean.searchOptionsManager}"
+            savedSearchProvider="#{searchBean.savedSearchProvider}"
+            searchQueryFactory="#{searchBean.searchQueryFactory}" >
+            <f:facet name="refinePanel">
+                <caf_h:panelPropertyGroup id="group" label="Refine Fields">
+                    <caf_h:panelPropertyLine id="refineLine1" label="Refine Field #1">
+                        <caf_h:inputText id="refine1" value="#{searchBean.activeSearchQuery.refineFields['field1']}"/>
+                    </caf_h:panelPropertyLine>
+                    <caf_h:panelPropertyLine id="refineLine2" label="Refine Field #2">
+                        <caf_h:selectOneRadio id="refine2" 
+                            value="#{searchBean.activeSearchQuery.refineFields['field2']}">
+                            <caf_f:selectItem itemLabel="apple" itemValue="apple"/>
+                            <caf_f:selectItem itemLabel="orange" itemValue="orange"/>
+                        </caf_h:selectOneRadio>
+                    </caf_h:panelPropertyLine>
+                </caf_h:panelPropertyGroup>
+            </f:facet>
+        </caf_h:panelSearchBar>
+        
+        <caf_h:panelBlock id="torefresh">
+            #{searchBar.activeSearchQuery}        
+        </caf_h:panelBlock>
+    </caf_h:form>
+    
+</ui:composition>
+

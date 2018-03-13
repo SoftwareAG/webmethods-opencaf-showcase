@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+    
+        <caf_f:importView id="import1" value="/controls/caf_h/samples/import.xhtml">
+            <caf_h:contentParameter name="panel1">
+                <caf_h:inputText id="input" />
+            </caf_h:contentParameter>
+        </caf_f:importView>
+        
+        <p>
+           <caf_h:commandButton id="button1" value="Submit" />
+        </p>
+        
+    </caf_h:form>
+    
+</ui:composition>

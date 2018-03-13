@@ -1,0 +1,98 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+	<caf_h:formattedMessages id="messages" globalOnly="true" p:data-progressDelay="30000"/>
+	
+	<h:form id="form" style="min-height: 150px;" p:data-progressMsg="Custom progress message for refresh...">
+	
+        <caf_h:panelPropertyGroup id="propertyGroup"
+            label="JSF Async Command Panel #1">
+            <f:facet name="label" />
+            <caf_h:panelPropertyLine id="propertyLine1" label="Field 1">
+                <caf_h:inputText id="htmlInputText" width="input20">
+                     <caf_f:validateExactRegex pattern="^\(\d{3}\)\s?\d{3}-\d{4}$"></caf_f:validateExactRegex>
+                </caf_h:inputText>
+            </caf_h:panelPropertyLine>
+            <caf_h:panelPropertyLine id="propertyLine2" label="Field 2 (no client-side validation)">
+                <caf_h:inputText id="htmlInputText2" width="input20" useClientSideValidation="false">
+                     <caf_f:validateExactRegex pattern="^\(\d{3}\)\s?\d{3}-\d{4}$"></caf_f:validateExactRegex>
+                </caf_h:inputText>
+            </caf_h:panelPropertyLine>
+        </caf_h:panelPropertyGroup>
+
+        <div>
+	        <h3>  1. f:ajax tag nested within a single component  </h3>
+	        <h:commandButton id="button1" value="AJAX Action #1" action="#{ajaxBean.doAction(3000)}" onclick="return CAF.Ajax.beforeSubmit(event);">
+	            <f:ajax execute="@form" render="@form :messages" listener="#{ajaxBean.ajaxListener}"
+	               onevent="CAF.Ajax.onEvent" onerror="CAF.Ajax.onError" />
+	            <ui:remove> Optionally, set the caf:model attribute to force this button to use the CAF.Command.Model as the client-side model </ui:remove>
+	            <f:passThroughAttribute name="caf:model" value="CAF.Command.Model"/>
+	        </h:commandButton>
+        </div>
+
+        <div>
+	        <h3>  2. f:ajax tag wrapped around many components (enabling ajax for multiple components)  </h3>
+	        <f:ajax execute="@form" render="@form :messages" listener="#{ajaxBean.ajaxListener}"
+	           onevent="CAF.Ajax.onEvent" onerror="CAF.Ajax.onError" >
+	            <h:commandButton id="button2" value="AJAX Action #2" action="#{ajaxBean.doAction}" onclick="return CAF.Ajax.beforeSubmit(event);"/>
+	            <h:commandButton id="button3" value="AJAX Action #3" action="#{ajaxBean.doAction}" onclick="return CAF.Ajax.beforeSubmit(event);"/>
+	        </f:ajax>
+        </div>
+        
+        <div>
+            <h3>  3. f:ajax tag for handling change event instead of click event </h3>
+            <h:selectOneRadio id="input1" value="#{ajaxBean.value}">
+                <f:selectItem itemValue="1" itemLabel="One"/>
+                <f:selectItem itemValue="2" itemLabel="Two"/>
+                <f:selectItem itemValue="3" itemLabel="Three"/>
+                <f:ajax event="change" execute="@this" render="output1 :messages" listener="#{ajaxBean.ajaxListener}"
+                    onevent="function(data) { CAF.Ajax.onEvent(data, 'change') }" onerror="CAF.Ajax.onError" />
+            </h:selectOneRadio>
+            <h:panelGroup id="output1" layout="block" p:data-progressDelay="2000">
+                Value is now: #{ajaxBean.value}
+            </h:panelGroup>
+        </div>
+
+        <div>
+            <h3>  4. f:ajax tag for handling login page as the response (i.e. session expired) </h3>
+            <h:commandButton id="button4" value="AJAX Action #4" action="#{ajaxBean.doLoginResponse}" onclick="return CAF.Ajax.beforeSubmit(event);">
+                <f:ajax render="@form :messages" listener="#{ajaxBean.ajaxListener}"
+                    onevent="CAF.Ajax.onEvent" onerror="CAF.Ajax.onError"  />
+            </h:commandButton>
+        </div>
+
+        <div>
+            <h3>  5. f:ajax tag for handling maintenance mode page as the response </h3>
+            <h:commandButton id="button5" value="AJAX Action #5" action="#{ajaxBean.doMaintenanceResponse}" onclick="return CAF.Ajax.beforeSubmit(event);">
+                <f:ajax render="@form :messages" listener="#{ajaxBean.ajaxListener}"
+                    onevent="CAF.Ajax.onEvent" onerror="CAF.Ajax.onError"  />
+            </h:commandButton>
+        </div>
+
+        <div>
+            <h3>  6. f:ajax tag for handling some other server side exception </h3>
+            <h:commandButton id="button6" value="AJAX Action #6" action="#{ajaxBean.doExceptionThrownResponse}" onclick="return CAF.Ajax.beforeSubmit(event);">
+                <f:ajax render="@form :messages" listener="#{ajaxBean.ajaxListener}"
+                    onevent="CAF.Ajax.onEvent" onerror="CAF.Ajax.onError"  />
+            </h:commandButton>
+        </div>
+
+        <div>
+            <h3>  7. f:ajax tag to process only part of a form  </h3>
+            <h:commandButton id="button7" value="AJAX Action #7" action="#{ajaxBean.doAction}" onclick="return CAF.Ajax.beforeSubmit(event);">
+                <f:ajax execute=":form:propertyLine2" render=":form:propertyLine2 :messages" listener="#{ajaxBean.ajaxListener}"
+                    onevent="CAF.Ajax.onEvent" onerror="CAF.Ajax.onError" />
+            </h:commandButton>
+        </div>
+
+	</h:form>
+	
+	<cafp_h:targetComponents target="head"/>
+
+</ui:composition>

@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+    <div style="width:100%">
+        <div style="float:left; width:40%; min-height:100px;">
+            <span>First Technique: valueChangeListener attribute</span><br />
+            <br />
+		    <h:form id="form">
+		        Select a Country:
+		        <h:selectOneMenu id="input" value="#{countryBean.countryCode}" 
+		            valueChangeListener="#{countryBean.onCountryChanged}" >
+		            <f:ajax execute="input" render="output"/>
+		            <f:selectItems value="#{countryBean.countryMap}"/>
+		        </h:selectOneMenu>
+		        <br/>
+		        <h:outputFormat value="Located in {0}." id="output">
+		            <f:param value="#{countryBean.continent}"/>
+		        </h:outputFormat>
+		    </h:form>
+            <br/>
+            View valueChangeListenerAttribute.xhtml and CountryBean.java for code.
+        </div>
+        <div style="float:left; width:40%; min-height:100px;">
+            <span>Second Technique: valueChangeListener interface </span><br />
+            <br />
+		    <h:form id="form2">
+		        Select a Country:
+		        <h:selectOneMenu id="input" value="#{countryBean.countryCode}"  >
+		            <f:valueChangeListener type="caf.war.wm_opencaf_showcase.controls.h.MyValueChangeListener" />
+		            <f:ajax execute="input" render="output"/>
+		            <f:selectItems value="#{countryBean.countryMap}"/>
+		        </h:selectOneMenu>
+		        <br/>
+		        <h:outputFormat value="Located in {0}." id="output">
+		            <f:param value="#{countryBean.continent}"/>
+		        </h:outputFormat>
+		    </h:form>
+            <br/>
+            View valueChangeListenerInterface.xhtml and MyValueChangeListener.java for code.
+        </div>
+    </div>
+    <div style="clear:both"/>
+	
+	<cafp_h:targetComponents rendered="#{ShowcaseDefaultviewView.inPortletRequest}" target="head"/>	
+</ui:composition>

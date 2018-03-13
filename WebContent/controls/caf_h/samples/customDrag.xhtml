@@ -1,0 +1,50 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages"/>
+	
+	<caf_h:form id="form">
+        
+        <div style="margin-top: 10px;" class="clearfix">
+            <div style="float:left; width:250px">
+                <div>
+                    <label for="#{caf:cid('pwd')}"><span class="caf-label-text">Drag From</span><span class="caf-label-separator">:</span></label>
+                </div>
+                <div style="width:82px;height:82px;border:1px solid black;padding: 10px;">
+			       <h:graphicImage id="dragable1" url="/resources/red.gif" />
+			       <caf_h:customDrag id="drag1" for="dragable1" move="false"/>
+			       
+			       <h:graphicImage id="dragable2" url="/resources/green.gif">
+			           <caf_h:customDrag id="drag2" move="false"/>
+			       </h:graphicImage>
+			       
+			       <h:graphicImage id="dragable3" url="/resources/blue.gif" />
+			       <caf_h:customDrag id="drag3" for="dragable3" move="false"/>
+                </div>
+            </div>
+            <div style="float:left; width:250px">
+                <div>
+                   <label for="#{caf:cid('pwdConfirm')}"><span class="caf-label-text">Drop To</span><span class="caf-label-separator">:</span></label>
+                </div>
+                <div>
+			       <caf_h:panelBlock id="droppable1" style="width:102px; height:102px;">
+			            <h:graphicImage id="dropimage1" style="width:100px; height:100px; border:1px solid black;" value="fe:/wm_cafshared/ui/img/blank.gif"/>
+			            <caf_h:customDrop handleDrop="return handleDrop(src,dst);"/>
+			       </caf_h:panelBlock>
+                </div>
+            </div>
+        </div>
+        
+	</caf_h:form>
+	
+	<script type="text/javascript">
+	   function handleDrop(src, dst) {
+            var dropImage = $(dst).down();
+            var dragImgSrc = $(src).down().src;
+            CAF.model(dropImage).setValue(dragImgSrc);
+            return false;
+	   }
+	</script>
+</ui:composition>

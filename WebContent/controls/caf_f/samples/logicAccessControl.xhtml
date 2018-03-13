@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    <caf_h:form id="form">
+    
+        <caf_f:logicAccessControl id="panel1" allowed-security-role='#{securityRoles["showcase_role"]}'>
+            <caf_h:panelBlock id="first" styleClass="my-block">
+                Panel to display when the current user is a member of the 'showcase_role' role.
+            </caf_h:panelBlock>
+        </caf_f:logicAccessControl>
+        
+        <caf_f:logicAccessControl id="panel2" denied-security-role='#{securityRoles["showcase_role"]}'>
+            <caf_h:panelBlock id="second" styleClass="my-block">
+                Panel to  display when the current user is <b>not</b> a member of the 'showcase_role' role.
+            </caf_h:panelBlock>
+        </caf_f:logicAccessControl>
+        
+    </caf_h:form>
+    
+    <style type="text/css">
+        .my-block {
+            margin-left: 25px;
+            margin-right: 25px;
+            height:150px;
+            border: 2px solid blue;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;        
+        }
+    </style>
+    
+</ui:composition>

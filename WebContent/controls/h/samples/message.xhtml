@@ -1,0 +1,10 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<h:form id="form">
+		<h:message id="message" errorStyle="color:red; display:block" for="validatedInput" />
+		<h:inputText id="validatedInput" required="true" />
+		<h:commandButton id="button1" value="Validate" />
+	</h:form>
+</ui:composition>

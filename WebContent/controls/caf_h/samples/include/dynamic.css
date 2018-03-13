@@ -1,0 +1,5 @@
+#foo {
+	padding: 15px;
+    color: white;
+    background-color: #{dynamicIncludeBean.randomColor};
+}

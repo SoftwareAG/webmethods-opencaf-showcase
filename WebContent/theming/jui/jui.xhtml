@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/theming/theming-template.xhtml">
+    	<ui:define name="commonResources">
+   		    <!-- Common xhtml -->
+    		<ui:include src="jui-resources.xhtml"></ui:include>	
+    		<script type="text/javascript">
+    			var $jq = jQuery.noConflict();
+    		</script>
+    	</ui:define>
+    	<ui:define name="theme">
+ 		    <ui:param name="pageTitle" value="MWS Theming > jQuery UI > #{sampleName}" />
+   	   		<ui:insert name="sample" />
+    	</ui:define>
+    	
+		<ui:define name="source">
+			<caf_h:toggleTabs id="sourceTabs" value="xhtml">
+				<ui:insert name="sampleTabs" />
+				<caf_f:selectItem id="commonCSSItem" itemValue="css" itemLabel="common.css" />
+			</caf_h:toggleTabs>
+			<ui:insert name="samplePanels" />
+			<caf_h:panelHideable id="css" showEffect="Effect.Appear">
+				<pre class="brush:css;toolbar:false">#{samplesBean.webResource("/resources/css/common.css")}</pre>
+			</caf_h:panelHideable>
+		</ui:define>
+		
+	</ui:composition>
+</body>    
+</html>

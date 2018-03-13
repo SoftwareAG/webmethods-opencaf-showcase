@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages"/>
+	
+	<caf_h:form id="form" requireSessionToken="false">
+	   
+        <caf_h:atomFeedIcon id="atomFeed" for="dataTable" 
+            label="Syndication Feed"
+            />
+
+        <h:dataTable id="dataTable" value="#{tableBean.tableContentProvider}" 
+            width="100%" var="row">
+            <h:column id="field1">
+                <f:facet name="header">
+                    Field1
+                </f:facet>
+                #{row.field1}
+            </h:column>
+            <h:column id="field2">
+                <f:facet name="header">
+                    Field2
+                </f:facet>
+                #{row.field2}
+            </h:column>
+        </h:dataTable>
+	</caf_h:form>
+	
+</ui:composition>

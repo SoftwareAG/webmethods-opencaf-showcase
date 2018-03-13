@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages"/>
+    
+    <caf_h:servletCommandForm id="form" defaultFocus="input2" defaultCommand="button1">
+        <div>
+            <label for="#{caf:cid('input')}"><span class="caf-label-text">Simple Text</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputText id="input" value="#{inputBean.value}" />
+        </div>
+        <div>
+            <label for="#{caf:cid('input')}"><span class="caf-label-text">Simple Text2</span><span class="caf-label-separator">:</span></label>
+        </div>
+        <div>
+            <caf_h:inputText id="input2" />
+        </div>
+        
+        <caf_h:asyncCommandButton id="button1" value="Simple Command"
+           action="#{commandBean.doAction}"/>
+        
+    </caf_h:servletCommandForm>
+    
+</ui:composition>

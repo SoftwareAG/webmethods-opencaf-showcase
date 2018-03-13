@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="http://www.webmethods.com/schema/xmlImport.xsd">
+
+    <!-- 1. App Folders -->
+    <context alias="webm.fabric.tasks.root">
+        <wm_xt_fabricfolder name="Demo" isOpenable="false" isTaskFolder="true">
+            <wm_xt_fabricfolder name="OpenCAF Showcase" alias="folder.wm_opencaf_showcase" 
+               isOpenable="true" isTaskFolder="true">
+              <relation type="renderer" path="renderers.nohobos"/>
+              <page>
+                <row>
+                  <column width="100%">
+                    <wm_opencaf_showcase___showcase name="Showcase" userAlias="portlet.wm_opencaf_showcase">
+                       <layout name="maximized" value="true" />
+                    </wm_opencaf_showcase___showcase>
+                  </column>
+                </row>
+                <hobos>
+                   <wm_noodle_pack___htmltext name="toinclude" userAlias="portlet.wm_opencafshowcase.htmltext"
+                       text="Placeholder Text" />
+                </hobos>
+              </page>
+            </wm_xt_fabricfolder>
+        </wm_xt_fabricfolder>
+    </context>
+
+    <!-- Template for mws_h:contextUpdate demo workspace -->
+    <include include="/WEB-INF/xmlimport-resources/contextUpdater.xml"/>
+
+    <!-- Demo page for mws_f:extendedPortletUrl  -->
+    <include include="/WEB-INF/xmlimport-resources/extendedPortletUrl.xml"/>
+
+    <!-- Demo page for mws_ui:resources -->
+    <include include="/WEB-INF/xmlimport-resources/mws_ui_resources.xml"/>
+    
+    <context alias="folder.public">
+        <folder name="OpenCAF Showcase Test" alias="folder.wm_opencaf_showcase.test">
+            <ace uid="My webMethods Administrators" action="add">
+                <right grant="true" name="ALL"/>
+            </ace>
+            <page>
+                <row>
+                    <column>
+                        <folder name="subfolder1" description="First child folder"></folder>
+                        <folder name="subfolder2" description="Second child folder"></folder>
+                    </column>
+                </row>
+                <hobos>
+                    <wm_noodle_pack___htmltext name="Placeholder"
+                               text="Placeholder Text" >
+                        <wiring name="text" portlet="user.profile.wiring" property="common_profile_fullName" />
+                    </wm_noodle_pack___htmltext>            
+                </hobos>
+            </page>
+        </folder>
+    </context>
+        
+    <!-- 2. Declare your new shell -->
+    <context alias="folder.shells">
+        <wm_xt_shell name="wm_opencaf_showcase_shell1" 
+                template="/wm_opencaf_showcase/shells/samples/page.xhtml"
+                parent="shell.noodle" 
+                userAlias="shell.wm_opencaf_showcase_shell1" />
+    </context>
+
+    <!-- 3. Create a shell rule to use your custom shell for some resource(s). -->
+    <context alias="shell.rule.folder">
+        <wm_xt_portalrules unless="exists"
+                name="wm_opencaf_showcase_shell1"
+                ruleText="portalResource isDescendant (&quot;folder.wm_opencaf_showcase&quot;) || portalResource.name startsWith &quot;Showcase Context Updater Demo&quot;"
+                targetURI="shell.wm_opencaf_showcase_shell1" 
+                info="-1" />
+    </context>
+    
+    
+    <!-- these additional permissions were added make the mws_h:portletEmbed sample 
+        function when logged in as the Administrator user. -->
+    <context alias="securityrealm.webm.apps.demo.opencaf.showcase_1706900728">
+        <ace uid="My webMethods Administrators" action="add">
+            <right grant="true" name="CREATE_ITEM"/>
+            <right grant="true" name="MODIFY"/>
+            <right deny="false" grant="true" name="READ"/>
+            <right deny="false" grant="true" name="MODIFY_PERMISSION"/>
+            <right deny="false" grant="true" name="PORTLET_MODIFY_PROPERTIES_USER"/>
+        </ace>
+    </context>
+
+</CONFIG>             

@@ -18,7 +18,7 @@ Components are grouped on the left-hand side bar according to their tag namespac
 
 ### OpenCAF Application Installation Steps
 
-1. Import the attached wm_opencaf_showcase_910.zip file into Software AG Designer.
+1. Import the component showcase files into Software AG Designer.
 
 2. Publish the showcase to My webMethods Server.
 

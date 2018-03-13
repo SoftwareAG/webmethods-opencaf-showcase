@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core" 
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:caf="http://webmethods.com/jsf/caf/fn"   
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html" 
+    xmlns:mws_ui="http://webmethods.com/jsf/mws_ui"
+    >
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>#{htmlHead.systemTitle}</title>
+    <mws_ui:scripts  />
+    
+    <style type="text/css">
+        .showcase_notice {
+            border: 1px dashed red;
+            font-style: italic;
+            margin: 10px;
+            padding:10px
+        }
+    </style>
+	<link type="text/css" rel="stylesheet" media="all"
+	    href="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/styles/shCore.css"></link>
+	<link type="text/css" rel="stylesheet" media="all"
+	    href="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/styles/shThemeDefault.css"></link>
+	<script
+	    src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shCore.js"
+	    type="text/javascript"></script>	    
+    <script
+        src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shBrushPlain.js"
+        type="text/javascript"></script>
+    <script
+        src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shBrushJava.js"
+        type="text/javascript"></script>
+    <script
+        src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shBrushXml.js"
+        type="text/javascript"></script>
+    <script
+        src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shBrushJScript.js"
+        type="text/javascript"></script>
+    <script
+        src="#{facesContext.externalContext.requestContextPath}/js/syntaxhighlighter_3.0.83/scripts/shBrushCss.js"
+        type="text/javascript"></script>        
+</h:head>
+<h:body>
+
+    <mws_ui:pre_body />
+    <div id="page">
+        <div id="nonFooter">
+            <div id="header">
+                <ui:remove> shell header </ui:remove>
+                <mws_ui:resource renderer="shell">
+                    <f:attribute name="shell.subrenderer.layout.name" value="head"/>
+                </mws_ui:resource>
+            </div>
+            <div id="body">
+                <div id="leftnav">
+                    <ui:remove> shell left </ui:remove>
+                    <mws_ui:resource renderer="shell">
+                        <f:attribute name="shell.subrenderer.layout.name" value="left"/>
+                    </mws_ui:resource>
+                </div>
+
+                <div id="rightnav">
+                    <ui:remove> shell right </ui:remove> 
+                    <mws_ui:resource renderer="shell">
+                        <f:attribute name="shell.subrenderer.layout.name" value="right"/>
+                    </mws_ui:resource>
+                </div>
+
+                <ui:remove> page content </ui:remove> 
+                <div id="portal-content" class="content">
+                    <ui:remove> wrap with container for caf async code </ui:remove> 
+                    <div id="#{caf:xh(htmlHead.resourceURI)}" class="page-portlet-container">
+                        <caf_h:formattedMessages id="shellErrors"/>
+                        
+                        <h1 class="showcase_notice">NOTICE: The framing for this page was rendered by an OpenCAF custom page template.</h1>
+                
+                        <mws_ui:resource />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <ui:remove> shell foot </ui:remove>
+            <mws_ui:resource renderer="shell">
+                <f:attribute name="shell.subrenderer.layout.name" value="foot"/>
+            </mws_ui:resource>
+        </div>
+    </div>
+</h:body>
+</html>

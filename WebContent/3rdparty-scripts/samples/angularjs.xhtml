@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <!-- Load AngularJS (from CDN or your own server if you prefer) -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+    <script>
+        var app = angular.module('myapp', []);
+    </script>
+
+    <style type="text/css">
+		/*-------------------------
+		    The menu
+		--------------------------*/
+		
+		nav{
+		    display:inline-block;
+		    background-color:#5597b4;
+		    box-shadow:0 1px 1px #ccc;
+		    border-radius:2px;
+		}
+		
+		nav a{
+		    display:inline-block;
+		    padding: 18px 30px;
+		    color:#fff !important;
+		    font-weight:bold;
+		    font-size:16px;
+		    text-decoration:none !important;
+		    line-height:1;
+		    text-transform: uppercase;
+		    background-color:transparent;
+		
+		    -webkit-transition:background-color 0.25s;
+		    -moz-transition:background-color 0.25s;
+		    transition:background-color 0.25s;
+		}
+		
+		nav a:first-child{
+		    border-radius:2px 0 0 2px;
+		}
+		
+		nav a:last-child{
+		    border-radius:0 2px 2px 0;
+		}
+		
+		nav.test1 .test1,
+		nav.test2 .test2,
+		nav.test3 .test3,
+		nav.test4 .test4{
+		    background-color:#e35885;
+		}
+		
+		p{
+		    font-size:22px;
+		    font-weight:bold;
+		    color:#7d9098;
+		}
+		
+		p b{
+		    color:#ffffff;
+		    display:inline-block;
+		    padding:5px 10px;
+		    background-color:#c4d7e0;
+		    border-radius:2px;
+		    text-transform:uppercase;
+		    font-size:18px;
+		}		
+    </style>
+
+	<!-- Adding the ng-app declaration to initialize AngularJS -->
+	<div id="main" ng-app="myapp">
+	    <!-- The navigation menu will get the value of the "active" variable as a class.
+	         The $event.preventDefault() stops the page from jumping when a link is clicked. -->
+	
+	    <nav class="{{active}}" ng-click="$event.preventDefault()">
+	
+	        <!-- When a link in the menu is clicked, we set the active variable -->
+	
+	        <a href="#" class="test1" ng-click="active='test1'">Test1</a>
+	        <a href="#" class="test2" ng-click="active='test2'">Test2</a>
+	        <a href="#" class="test3" ng-click="active='test3'">Test3</a>
+	        <a href="#" class="test4" ng-click="active='test4'">Test4</a>
+	    </nav>
+	
+	    <!-- ng-show will show an element if the value in the quotes is truthful,
+	         while ng-hide does the opposite. Because the active variable is not set
+	         initially, this will cause the first paragraph to be visible. -->
+	
+	    <p ng-hide="active">Please click a menu item</p>
+	    <p ng-show="active">You chose <b>{{active}}</b></p>
+	</div>
+    
+</ui:composition>

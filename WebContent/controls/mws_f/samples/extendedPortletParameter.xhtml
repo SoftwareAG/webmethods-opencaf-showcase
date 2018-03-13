@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html"
+    xmlns:cafp_f="http://webmethods.com/jsf/cafp/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+        <caf_h:form id="form">
+   
+            <p>
+                <cafp_h:portletSimpleLink id="link1" >
+                    <f:facet name="href">
+                        <mws_f:extendedPortletUrl id="url1" type="render"
+                              baseUrl="/page.wm_opencaf_showcase.extendedportleturl">
+                            <mws_f:extendedPortletUrl portlet="portlet.wm_opencaf_showcase.sample1">
+                                <mws_f:extendedPortletParameter name="text" value="New text set by the extendedPortletParameter"/>
+                            </mws_f:extendedPortletUrl>
+                        </mws_f:extendedPortletUrl>
+                    </f:facet>
+                    Switch to another page with a portlet parameter
+                </cafp_h:portletSimpleLink>
+            </p>
+
+        </caf_h:form>
+    </caf_f:view>
+
+</ui:composition>

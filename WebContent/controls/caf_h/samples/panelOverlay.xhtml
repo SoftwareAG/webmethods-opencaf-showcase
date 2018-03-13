@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+
+        <p>
+	        <caf_h:oneWayToggleButton for="overlayPanel1" id="oneWayToggleButton1" value="Toggle Overlay Panel #1"/>
+	        <caf_h:oneWayToggleButton for="overlayPanel2" id="oneWayToggleButton2" value="Toggle Overlay Panel #2"/>
+        </p>
+        
+        <caf_h:panelOverlay for="blockPanel" id="overlayPanel1" opacity="1.0" styleClass="overlay-block1">
+            Overlay Panel #1
+        </caf_h:panelOverlay>
+
+        <caf_h:panelOverlay for="blockPanel" id="overlayPanel2" opacity="0.5" styleClass="overlay-block2">
+            Overlay Panel #2
+        </caf_h:panelOverlay>
+
+        <caf_h:panelBlock id="blockPanel" styleClass="to-overlay-block">
+            Panel to Overlay
+        </caf_h:panelBlock>
+    </caf_h:form>
+    
+    <style type="text/css">
+        .overlay-block1 {
+            background-color: gray;
+            border: 2px solid blue;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 250px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;        
+        }
+        
+        .overlay-block2 {
+            background-color: olive;
+            border: 2px solid red;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 250px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box; 
+            font-size: 48px;       
+        }
+        
+        .to-overlay-block {
+            margin-left: 25px;
+            margin-right: 25px;
+            height:250px;
+            border: 2px solid blue;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 250px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;        
+        }
+    </style>
+</ui:composition>
+

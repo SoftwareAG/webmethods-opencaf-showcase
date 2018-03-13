@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core" 
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+    <ui:composition>
+        <caf_f:view pageManagedBean="importViewBean">
+            <caf_h:panelBlock id="blockPanel1">
+                <caf_h:outputText id="htmlOutputText" raw="true" value="Before Parameter Panel"/>
+            </caf_h:panelBlock>
+            <caf_h:panelBlock id="panel1">
+                <caf_h:outputText id="htmlOutputText2" raw="true" value="In Parameter Panel"/>
+            </caf_h:panelBlock>
+            <caf_h:panelBlock id="blockPanel2">
+                <caf_h:outputText id="htmlOutputText1" raw="true" value="After Parameter Panel"/>
+            </caf_h:panelBlock>
+        </caf_f:view>
+    </ui:composition>
+    </body>
+</html>
