@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>All Topics</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+</head>
+<body>
+	<h1 class="bar">All Topics</h1>
+	<div class="indexContainer">
+		<ul>
+            <c:forEach items="#{allTopics.topicList}" var="topic">
+                <li style="margin-left: #{topic.depth * 20}px">
+                   <c:choose>
+                       <c:when test="#{not empty topic.link}">
+                           <a target="topicFrame" href="#{topic.link}"><i>#{topic.displayName}</i></a>
+                       </c:when>
+                       <c:otherwise>
+                           <i>#{topic.displayName}</i>
+                       </c:otherwise>
+                   </c:choose>
+                </li>
+            </c:forEach>
+		</ul>
+	</div>
+</body>
+</html>

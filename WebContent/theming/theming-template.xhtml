@@ -1,0 +1,40 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/templates/page_with_syntaxhighlighter.xhtml">
+    	<ui:define name="body">
+    		<caf_h:form id="form">
+	    		<!-- CSS included in all theming -->
+	   			<link type="text/css" rel="stylesheet" href="#{facesContext.externalContext.requestContextPath}/resources/css/common.css" />
+				
+				<caf_h:selectOneMenu width="input20" disabledClass="disabled"
+					enabledClass="enabled" id="htmlSelectOneMenu" value="#{themeManagerBean.selectedTheme}">
+					<caf_f:selectItems id="themeItems" value="#{themeManagerBean.themes}"></caf_f:selectItems>
+				</caf_h:selectOneMenu>
+				<caf_h:asyncCommandButton id="asyncChangeThemebtn" refresh="form:refreshBlock" value="Go" />
+				<script>
+				Event.waitUntilLoaded(function(){
+					CAF.model("#{caf:cid('asyncChangeThemebtn')}").addActionCompleteListener(function(id){
+						Event.stopObserving(id, 'click');
+					});
+				});
+				</script>
+	    		<ui:insert name="commonResources" />
+				<caf_h:panelBlock id="refreshBlock">
+					<ui:insert name="theme" /> <!-- Common theme xhtml -->
+					<caf_h:includeStylesheet id="includeStylesheet" value="/theming/#{themeManagerBean.selectedTheme}"></caf_h:includeStylesheet>
+				</caf_h:panelBlock>
+			</caf_h:form>
+			
+			<h4 class="sourcetabbox">Source</h4>
+			<div class="sourcetabbox">
+				<caf_h:form id="tabsform">
+					<ui:insert name="source" />
+				</caf_h:form>
+			</div>
+		</ui:define> 
+    </ui:composition>
+</body>
+</html>

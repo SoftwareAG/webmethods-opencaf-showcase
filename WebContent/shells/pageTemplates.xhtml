@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/templates/page_with_syntaxhighlighter.xhtml">
+        <ui:param name="pageTitle" value="Shells > Page Templates" />
+        <ui:define name="body">
+            
+            <ol>
+                <li>Create a facelet (xhtml) based page template (for example: WebContent/page.xhtml)</li>
+                <li>Create a WebContent/WEB-INF/config/xmlImport.xml file to register a shell during deployment of your application
+                    <ol style="list-style-type: lower-alpha;">
+                        <li>Create a wm_xt_shell thing under the shells folder and set the 'template' attribute to the page template from #1</li>
+                        <li>Create a shell rule to map your custom shell to the resources that should use the custom shell</li>
+                    </ol>
+                </li>
+            </ol>
+            
+            <caf_h:form id="form">
+	            <p>
+	                <a href="#{mwsCluster.frontEndUrl}/folder.wm_opencaf_showcase">Click here to see an example page using a custom shell</a>
+	            </p>
+            </caf_h:form>
+
+            <h4 class="sourcetabbox">Source</h4>
+            <div class="sourcetabbox">
+                <caf_h:form id="tabsform">
+	                <caf_h:toggleTabs id="sourceTabs" value="pageXhtml">
+	                    <caf_f:selectItem id="pageXhtmlItem" itemValue="pageXhtml" itemLabel="page.xhtml" />
+	                    <caf_f:selectItem id="xmlImportItem" itemValue="xmlImport" itemLabel="xmlImport.xml" />
+	                </caf_h:toggleTabs>
+	                <caf_h:panelHideable id="pageXhtml" showEffect="Effect.Appear">
+	                    <pre class="brush:xhtml;toolbar:false;highlight:[]">#{samplesBean.webResource("/shells/samples/page.xhtml")}</pre>
+	                </caf_h:panelHideable>
+	                <caf_h:panelHideable id="xmlImport" showEffect="Effect.Appear">
+	                    <pre class="brush:xml;toolbar:false;highlight:[]">#{samplesBean.webResource("/WEB-INF/config/xmlImport.xml")}</pre>
+	                </caf_h:panelHideable>
+	            </caf_h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

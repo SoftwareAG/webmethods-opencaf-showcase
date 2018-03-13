@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.webmethods.com/schema/xmlImport.xsd">
+
+	<!-- 1. App Folders -->
+	<context alias="folder.wm_opencaf_showcase">
+		<!-- Sample page for mws_f:extendedPortletUrl demo -->
+		<wm_xt_fabricfolder name="Extended PortletUrl Demo"
+			userAlias="page.wm_opencaf_showcase.extendedportleturl">
+			<page>
+				<row>
+					<column width="100%">
+						<wm_noodle_pack___htmltext name="Sample Portlet" 
+						  userAlias="portlet.wm_opencaf_showcase.sample1"
+						  text="Placeholder text" />
+					</column>
+				</row>
+			</page>
+		</wm_xt_fabricfolder>
+	</context>
+</CONFIG>             

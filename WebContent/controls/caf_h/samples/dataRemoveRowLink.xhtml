@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages"/>
+	
+	<caf_h:form id="form">
+
+		<caf_h:dataAsyncTable id="dataTable" value="#{updateTableBean.tableContentProvider}" 
+            width="100%" var="row" rows="5" 
+            headerClass="portlet-section-subheader"
+            footerClass="portlet-section-footer"
+            rowClasses="portlet-section-body,portlet-section-alternate"
+            selectedRowClass="portlet-section-selected" >
+            <f:facet name="header">
+                <caf_h:dataRemoveRowLink id="removeRow1" row="_selected">
+                    Remove Selected Row
+                </caf_h:dataRemoveRowLink>
+            </f:facet>
+            <caf_h:columnSelectRow id="selectrow" multiple="false" />
+            <h:column id="column1">
+                <f:facet name="header">
+                    Field1
+                </f:facet>
+                <caf_h:inputText id="field1" value="#{row.field1}" />
+            </h:column>
+            <h:column id="column2">
+                <f:facet name="header">
+                    Field2
+                </f:facet>
+                <caf_h:inputText id="field2" value="#{row.field2}" />
+            </h:column>
+            <h:column id="column3">
+                <f:facet name="header">
+                    Tools
+                </f:facet>
+                <caf_h:dataRemoveRowLink id="removeRow2" row="_this" removeLastRow="false">
+                    Remove Row
+                </caf_h:dataRemoveRowLink>
+            </h:column>
+        </caf_h:dataAsyncTable>
+        
+	</caf_h:form>	
+</ui:composition>

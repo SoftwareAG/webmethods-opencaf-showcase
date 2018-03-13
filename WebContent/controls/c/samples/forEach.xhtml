@@ -1,0 +1,12 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ul style="list-style-type: decimal;">
+	    <c:forEach items="#{allTopics.topicList}" var="topic" begin="0" end="10">
+	        <li>#{topic.displayName}</li>
+	    </c:forEach>
+    </ul>
+    
+</ui:composition>

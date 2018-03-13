@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+
+        <p>
+            <caf_h:refreshButton id="refresh1" for="block1">
+                Refresh Block
+            </caf_h:refreshButton>
+        </p>
+        
+        <caf_h:panelHideable id="block1" style="border: 1px solid black;padding:20px;">
+            Text in Panel
+        </caf_h:panelHideable>
+
+    </caf_h:form>
+
+</ui:composition>

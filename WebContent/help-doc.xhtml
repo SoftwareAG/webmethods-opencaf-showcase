@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<body>
+    <ui:composition template="/templates/page.xhtml">
+        <ui:param name="pageTitle" value="Resources (Things)" />
+        <ui:define name="header">
+	        <h1 class="title">How This Document Is Organized</h1>
+	        <div class="subTitle">This document has pages corresponding to
+	            the items in the navigation bar, described as follows.</div>
+        </ui:define>
+        <ui:define name="body">
+	        <ul class="blockList">
+	            <li class="blockList">
+	                <h2>Overview</h2>
+	                <p>
+	                    The <a href="overview-summary.xhtml">Overview</a> page is the front
+	                    page of this documentation and provides a list of all topics with a
+	                    summary for each.
+	                </p>
+	            </li>
+	            <li class="blockList">
+	                <h2>Frames/No Frames</h2>
+	                <p>These links show and hide the HTML frames. All pages are
+	                    available with or without frames.</p>
+	            </li>
+	        </ul>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

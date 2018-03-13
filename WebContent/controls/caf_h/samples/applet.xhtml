@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <script type="text/javascript">
+        window.g_sServerURL = "http://localhost:8585";
+    </script>
+    <caf_h:formattedMessages id="messages" />	
+	<caf_h:form id="form">
+	   <caf_h:asyncCommandHidden id="submitDroppedFiles" 
+	       action="#{appletBean.handleUploadedFiles}"
+	       refresh="_none"/>
+       <caf_h:asyncCommandHidden id="refreshAttachments" />
+
+	    <caf_h:applet id="applet" 
+	        code="com.webmethods.caf.dragndrop.DropUploader" 
+	        codebase="/archive" 
+	        height="50" 
+	        mayscript="true" 
+	        minVersion="1.5" 
+	        name="#{StandardLibrary.resourceBundle['component.attachments-list.applet.name']}" 
+	        width="100%">
+	        <f:param name="jsid" value="#{appletBean.appSessionId}"/>
+	        <f:param name="codebase" value="/archive"/>
+	        <f:param name="uniqueID" value="#{appletBean.uniqueID}"/>
+	        <f:param name="archive" value="/wm_cafshared/applets/signed_dnd.jar"/>
+	        <f:param name="displayText" value="#{StandardLibrary.resourceBundle['component.attachments-list.droparea.title']}"/>
+	        <f:param name="direction" value="ltr"/>
+	        <f:param name="uploadActionId" value="#{caf:cid('submitDroppedFiles')}"/>
+	        <f:param name="refreshActionId" value="#{caf:cid('refreshAttachments')}"/>
+	        <f:param name="UnSupportedEnvironmentTitle" value="#{StandardLibrary.resourceBundle['component.attachments-list.nosupport.dialog.title']}"/>
+	        <f:param name="UnSupportedEnvironmentMessage" value="#{StandardLibrary.resourceBundle['component.attachments-list.nosupport.dialog.message']}"/>
+	        <f:param name="ConfirmDropTitle" value="#{StandardLibrary.resourceBundle['component.attachments-list.confirm.dialog.title']}"/>
+	        <f:param name="ConfirmDropAttach" value="#{StandardLibrary.resourceBundle['component.attachments-list.confirm.dialog.submit']}"/>
+	        <f:param name="ConfirmDropCancel" value="#{StandardLibrary.resourceBundle['component.attachments-panel.dialog.cancel']}"/>
+	    </caf_h:applet>
+	</caf_h:form>
+	
+	
+</ui:composition>

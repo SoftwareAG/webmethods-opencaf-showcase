@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:cafp_f="http://webmethods.com/jsf/cafp/core"
+	xmlns:mws_ui="http://webmethods.com/jsf/mws_ui" >
+
+    <caf_h:form id="createItemTabsform">
+        <caf_h:toggleTabs id="sourceTabs" value="page">
+            <caf_f:selectItem id="folderItem"  itemValue="folder"  itemLabel="Folder" />
+            <caf_f:selectItem id="pageItem"    itemValue="page"    itemLabel="Page" />
+            <caf_f:selectItem id="linkItem"    itemValue="link"    itemLabel="Link" />
+            <caf_f:selectItem id="contentItem" itemValue="content" itemLabel="File" />
+        </caf_h:toggleTabs>
+    </caf_h:form>
+
+    <caf_h:panelHideable id="folder">
+	    <mws_ui:resource uri="folder.wm_opencaf_showcase.test" renderer="create">
+	        <cafp_f:portletParameter name="type" value="folder"/>
+	        <cafp_f:portletParameter name="title" value="New Folder"/>
+	        <cafp_f:portletParameter name="finishUrl" value="/folder.wm_opencaf_showcase.test"/>
+	    </mws_ui:resource>
+    </caf_h:panelHideable>
+
+    <caf_h:panelHideable id="page">
+	    <mws_ui:resource uri="folder.wm_opencaf_showcase.test" renderer="create">
+            <!-- alternatively, use the more verbose property names with the f:attribute tags -->
+	        <f:attribute name="portlet.property.type" value="page" />
+	        <f:attribute name="portlet.property.title" value="New Page" />
+            <f:attribute name="portlet.property.finishUrl" value="/folder.wm_opencaf_showcase.test" />
+	    </mws_ui:resource>
+    </caf_h:panelHideable>
+
+    <caf_h:panelHideable id="link">
+	    <mws_ui:resource uri="folder.wm_opencaf_showcase.test" renderer="create">
+            <!-- alternatively, use f:param and caf_h:contentParameter which works the same as f:attribute -->
+            <f:param name="portlet.property.type" value="link"/>
+            <caf_h:contentParameter name="portlet.property.title">New Link</caf_h:contentParameter>
+            <f:param name="portlet.property.finishUrl" value="/folder.wm_opencaf_showcase.test"/>
+	    </mws_ui:resource>
+    </caf_h:panelHideable>
+    
+    <caf_h:panelHideable id="content">
+	    <mws_ui:resource uri="folder.wm_opencaf_showcase.test" renderer="create">
+            <cafp_f:portletParameter name="type" value="content"/>
+            <cafp_f:portletParameter name="title" value="New File"/>
+            <cafp_f:portletParameter name="finishUrl" value="/folder.wm_opencaf_showcase.test"/>
+	    </mws_ui:resource>
+    </caf_h:panelHideable>
+</ui:composition>

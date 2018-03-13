@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<caf_h:formattedMessages id="messages" />
+
+	<h:form id="form">
+        <p>
+            Value is: #{inputStringBean.value}
+        </p>
+        <h:commandButton id="button1" value="Action #1">
+            <f:setPropertyActionListener target="#{inputStringBean.value}" value="Action #1 Value"/>
+        </h:commandButton>
+        <h:commandButton id="button2" value="Action #2">
+            <f:setPropertyActionListener target="#{inputStringBean.value}" value="Action #2 Value"/>
+        </h:commandButton>
+	</h:form>
+
+</ui:composition>

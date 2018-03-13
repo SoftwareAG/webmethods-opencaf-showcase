@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:panelPropertyGroup label="Flash Defaults">
+        <caf_h:flash id="flash1" height="100" width="100"
+            value="/resources/test.swf" />
+    </caf_h:panelPropertyGroup>
+    <caf_h:panelPropertyGroup label="Flash Advanced">
+        <caf_h:flash id="flash2" allowscriptaccess="true" bgcolor="#eeeeff" devicefont="true" 
+            height="200" hspace="20" loop="false" menu="false" 
+            minVersion="6" name="daflash" play="false" quality="autohigh" 
+            salign="bl" seamlesstabbing="false" swliveconnect="true" 
+            value="/resources/test.swf" vspace="20" width="100%" wmode="transparent"/>
+    </caf_h:panelPropertyGroup>
+    
+</ui:composition>

@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+       
+        <button id="growlbutton" onclick='return growlHelloMsg();'>
+            Growl a message
+        </button>
+        <caf_h:growler id="growler" location="Top-Right" width="200px" 
+            life="5" speedin="0.5" speedout="0.5" />
+
+                
+    </caf_h:form>
+    
+    <script type="text/javascript">
+        function growlHelloMsg() {
+            CAF.Growler.growl("#{caf:cid('growler')}", "Hello Growler.")
+            return false;
+        }
+    </script>
+</ui:composition>

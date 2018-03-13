@@ -1,0 +1,20 @@
+table .mws-rounded-top-left, .mws-rounded-all {
+	-moz-border-top-left-radius: .8em;
+	-webkit-border-top-left-radius: .8em;
+	border-top-left-radius: .8em;
+}
+table .mws-rounded-top-right, .mws-rounded-all {
+	-moz-border-top-right-radius: .8em;
+	-webkit-border-top-right-radius: .8em;
+	border-top-right-radius: .8em;
+}
+table .mws-rounded-bottom-left, .mws-rounded-all {
+	-moz-border-bottom-left-radius: .8em;
+	-webkit-border-bottom-left-radius: .8em;
+	border-bottom-left-radius: .8em;
+}
+table .mws-rounded-bottom-right, .mws-rounded-all {
+	-moz-border-bottom-right-radius: .8em;
+	-webkit-border-bottom-right-radius: .8em;
+	border-bottom-right-radius: .8em;
+}

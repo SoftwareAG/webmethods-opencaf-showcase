@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <caf_h:form id="defaultForm">
+	    <caf_h:panelPageGroup id="block1" label="Page Group Label Here">
+	    
+	        <caf_h:panelTitlebarTabsWrapper id="titlebarTabs">
+	            <caf_h:selectOneTabs id="tabs" value="Two" layout="bottom">
+	                <caf_f:selectItem itemValue="One"/>
+	                <caf_f:selectItem itemValue="Two"/>
+	                <caf_f:selectItem itemValue="Three"/>            
+	            </caf_h:selectOneTabs>
+	        </caf_h:panelTitlebarTabsWrapper>
+	
+	    </caf_h:panelPageGroup>
+    </caf_h:form>
+
+    <style type="text/css">
+        .caf-tabs-titlebar {
+            text-align: center;
+            margin-top: -5px;
+        }
+    </style>
+</ui:composition>

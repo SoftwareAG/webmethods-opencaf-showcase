@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:formattedMessages id="messages"/>
+    
+    <caf_h:form id="form">
+        <caf_h:selectOneRadio id="input1" value="apple">
+            <caf_f:selectItem itemValue="apple"/>
+            <caf_f:selectItem itemValue="orange"/>
+        </caf_h:selectOneRadio>               
+        
+        <caf_h:raiseOnChange for="input1" command="hidden1"/>
+       
+        <caf_h:asyncCommandHidden id="hidden1"
+           action="#{commandBean.doAction}"/>
+
+    </caf_h:form>
+    
+</ui:composition>

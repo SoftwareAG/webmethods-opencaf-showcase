@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<ui:define name="body">
+        <f:view>
+            <f:metadata> 
+                <f:viewParam name="username1" value="#{fakeUserBean.username}" />
+                <f:viewParam name="pw1" value="#{fakeUserBean.password}" />
+                <f:viewAction if="#{not empty param.username1 || not empty param.pw1}" action="#{fakeUserBean.checkPassWordLength}" />
+            </f:metadata>
+            <h:messages id="messages"/>
+            <h:outputText id="usernameText" value="User Name: #{fakeUserBean.username}"></h:outputText>
+            <br/>
+            <h:outputText id="passwordText" value="Password: #{fakeUserBean.password}" />
+        </f:view>
+        
+        <h:form id="form">
+            <h4>Links</h4>
+            <h:panelGrid columns="2" cellspacing="20">
+                <h:link id="link1" value="/controls/f/viewAction.xhtml?username1=jungle&amp;pw1=fever" outcome="/controls/f/viewAction.xhtml?username1=jungle&amp;pw1=fever" />
+                <h:link id="link2" value="/controls/f/viewAction.xhtml?username1=jungle" outcome="/controls/f/viewAction?username1=jungle" onclick="this.search = this.search + (this.search.indexOf('?') !== -1 ? '&amp;' : '?') + 'pw1=';"/>
+                <h:link id="link3" value="/controls/f/viewAction.xhtml?pw1=fever" outcome="/controls/f/viewAction.xhtml?pw1=fever" onclick="this.search = this.search + (this.search.indexOf('?') !== -1 ? '&amp;' : '?') + 'username1=';" /> 
+                <h:link id="link4" value="/controls/f/viewAction.xhtml?username1=jungle&amp;pw1=tiny" outcome="/controls/f/viewAction?username1=jungle&amp;pw1=tiny" />
+            </h:panelGrid>
+        </h:form>
+        <div>
+            <br /> f:metadata tag must be in the top level xhtml file. The included
+            viewAction.xhtml is purely for displaying the code. <br/> To add view params to links add <span style="font-family: monospace; font-size: 1.3em;">includeViewParams="true"</span> attribute.
+        </div>
+    </ui:define>
+</ui:composition>

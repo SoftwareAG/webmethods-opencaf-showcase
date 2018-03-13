@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <!-- NOTE: prototypejs is already embedded with CAF, so no need to load it again. -->    
+    <ui:remove>
+	    <!-- Load prototypejs (from CDN or your own server if you prefer) -->
+	    <script src="//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js"></script>
+    </ui:remove>
+
+    <style type="text/css">
+       .red-border {
+            border: thin solid red;
+            color: red;
+       }
+       .blue-border {
+            border: thin solid blue;
+            color: blue;
+       }
+    </style>  
+      
+    <caf_h:form id="form">
+    
+        <caf_h:inputText id="inputText" styleClass="pjs-input"/>
+    
+    </caf_h:form>
+    
+    <script type="text/javascript">
+        //Do some simple prototypejs calls.
+        document.observe("dom:loaded", function() {
+	        $$(".pjs-input").each(function(item) {
+	            item.on("focus", function(event) {
+		                $(this).removeClassName("red-border");
+		                $(this).addClassName("blue-border");
+		            });
+		        item.on("blur", function(event){
+		                $(this).removeClassName("blue-border");
+		                $(this).addClassName("red-border");
+		            });
+		        item.addClassName("red-border");
+	        });
+        });        
+    </script>
+    
+</ui:composition>

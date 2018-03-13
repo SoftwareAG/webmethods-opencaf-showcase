@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h1 id="greeting">Hello</h1>
+    
+    <!-- Load Dojo (from CDN or your own server if you prefer) -->
+    <script src="//ajax.googleapis.com/ajax/libs/dojo/1.9.3/dojo/dojo.js"></script>
+
+    <script type="text/javascript">
+		require([
+		    'dojo/dom',
+		    'dojo/fx',
+		    "dojo/dom-geometry",
+		    'dojo/domReady!'
+		], function (dom, fx, domGeom) {
+		    // The piece we had before...
+		    var greeting = dom.byId('greeting');
+		    greeting.innerHTML += ' from Dojo!';
+		 
+		    // ...but now, with an animation!
+		    fx.slideTo({
+		        node: greeting,
+   		        top:  (domGeom.getMarginBox(greeting).t + 50).toString(),
+			    left: (domGeom.getMarginBox(greeting).l + 300).toString(),
+			    unit: "px"        
+		    }).play();
+		});
+    </script>
+    
+    <div style="height: 150px;"></div>
+        
+</ui:composition>

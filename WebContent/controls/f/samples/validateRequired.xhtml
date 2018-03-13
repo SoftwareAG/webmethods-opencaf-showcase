@@ -1,0 +1,32 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    <caf_h:form id="form" defaultCommand="button1">
+        <pre>
+NOTE: This validator would be not be called for empty fields unless the 
+javax.faces.VALIDATE_EMPTY_FIELDS context-param value in the web.xml has changed 
+the default behavior.  Doing that can have other undesired side effects so it
+is usually preferred to use the 'required' attribute on the input tag instead.
+        </pre>
+        <div>
+            <caf_h:outputLabel for="input1">Validate Required</caf_h:outputLabel>
+        </div>
+        <div>
+            <h:inputText id="input1" value="#{inputStringBean.value}">
+                <f:validateRequired />
+            </h:inputText>
+        </div>
+        <h:message id="input1msg" for="input1" style="color:rgb(204, 0, 0)" showSummary="false" showDetail="true"/>
+        
+        <p>
+           <h:commandButton id="button1" value="Submit" />
+        </p>
+        
+    </caf_h:form>
+    
+</ui:composition>

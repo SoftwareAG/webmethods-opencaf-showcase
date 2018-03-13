@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+        
+        <p>
+            <caf_h:toggleTabs id="toggle1" value="first">
+                <caf_f:selectItem itemValue="first" itemLabel="First Panel"/>
+                <caf_f:selectItem itemValue="second" itemLabel="Second Panel"/>
+                <caf_f:selectItem itemValue="third" itemLabel="Third Panel"/>
+            </caf_h:toggleTabs>
+        </p>
+
+        <caf_h:panelHideable id="first" styleClass="stack-block">
+            First Panel
+        </caf_h:panelHideable>
+        <caf_h:panelHideable id="second" styleClass="stack-block">
+            Second Panel
+        </caf_h:panelHideable>
+        <caf_h:panelHideable id="third" styleClass="stack-block">
+            Third Panel
+        </caf_h:panelHideable>
+
+    </caf_h:form>
+    
+    <style type="text/css">
+        .stack-block {
+            margin-left: 25px;
+            margin-right: 25px;
+            height:150px;
+            border: 2px solid blue;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 150px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;        
+        }
+    </style>
+</ui:composition>
+

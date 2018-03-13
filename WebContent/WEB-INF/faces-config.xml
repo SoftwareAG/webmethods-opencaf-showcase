@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" version="2.2" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	<application>
+		<message-bundle>caf.war.wm_opencaf_showcase.AppResources</message-bundle>
+		<locale-config>
+			<default-locale>en_US</default-locale>
+		</locale-config>
+	</application>
+
+	<managed-bean>
+		<description>applicationbean</description>
+		<display-name>wm_opencaf_showcase</display-name>
+		<managed-bean-name>Wm_opencaf_showcase</managed-bean-name>
+		<managed-bean-class>caf.war.wm_opencaf_showcase.Wm_opencaf_showcase</managed-bean-class>
+		<managed-bean-scope>application</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<description>portletbean</description>
+		<display-name>showcase</display-name>
+		<managed-bean-name>Showcase</managed-bean-name>
+		<managed-bean-class>caf.war.wm_opencaf_showcase.showcase.Showcase</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<description>Specifies whether the session bean expires when the pageflow is out of scope</description>
+			<display-name>Expire With Page Flow</display-name>
+			<property-name>expireWithPageFlow</property-name>
+			<property-class>java.lang.Boolean</property-class>
+			<value>true</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<description>pagebean</description>
+		<display-name>Showcase/default</display-name>
+		<managed-bean-name>ShowcaseDefaultviewView</managed-bean-name>
+		<managed-bean-class>caf.war.wm_opencaf_showcase.showcase.ShowcaseDefaultviewView</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<description>Specifies whether the session bean expires when the pageflow is out of scope</description>
+			<display-name>Expire With Page Flow</display-name>
+			<property-name>expireWithPageFlow</property-name>
+			<property-class>java.lang.Boolean</property-class>
+			<value>true</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>mwsCluster</managed-bean-name>
+		<managed-bean-class>com.webmethods.caf.faces.bean.ClusterInfoBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<lifecycle>
+		<phase-listener>caf.war.wm_opencaf_showcase.showcase.SwitchTestPagePhaseListener</phase-listener>
+	</lifecycle>
+</faces-config>

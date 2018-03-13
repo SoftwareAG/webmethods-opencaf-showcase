@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages" globalOnly="true"/>
+	<caf_h:form id="form">
+        <caf_h:oneWayToggleButton id="openDlg" for="dialog" value="Simple Dialog"/>
+        <caf_h:asyncCommandButton id="openDlg2" toggle="dialog2" refresh="dialog2" 
+            value="Dialog That Stays Open On Submit Errors" action="#{dialogBean.doPrepareDialog2}" />
+
+        <caf_h:modalDialog id="dialog" progressFlashOnComplete="false">
+            <f:facet name="title">
+                Dialog Title
+            </f:facet>
+            <f:facet name="other">
+                <button id="other" onclick="CAF.Dialog.alert('Other clicked!', null, {id:'otherDlg'})">Other</button>
+            </f:facet>
+            <f:facet name="submit">
+                <caf_h:asyncCommandButton id="submit" toggle="dialog" value="Submit" action="#{dialogBean.doSubmitAction}"/>
+            </f:facet>
+            <f:facet name="cancel">
+                <caf_h:oneWayToggleButton id="cancel" for="dialog" value="Cancel" />
+            </f:facet>
+            <div>
+                Here is my dialog content!
+            </div>
+        </caf_h:modalDialog>
+
+        <caf_h:modalDialog id="dialog2" styleClass="caf-task-dialog" width="400px" progressFlashOnComplete="false">
+            <f:facet name="title">
+                Keep Dialog Open on Error
+            </f:facet>
+            <f:facet name="other">
+                <caf_h:asyncCommandButton id="other2" refresh="dialog2Body" value="Do Error" action="#{dialogBean.doSubmitActionError}"/>
+            </f:facet>
+            <f:facet name="submit">
+                <caf_h:asyncCommandButton id="submit2" refresh="dialog2Body" value="Do Success" action="#{dialogBean.doSubmitActionSuccess}"/>
+            </f:facet>
+            <f:facet name="cancel">
+                <caf_h:oneWayToggleButton id="cancel2" for="dialog2" value="Cancel" />
+            </f:facet>
+            <caf_h:panelHideable id="dialog2Body">
+                <caf_h:formattedMessage id="dialog2Msg" for="dialog2"/>
+                
+                Here is my dialog content!
+                
+                <caf_f:logicIf value="#{true eq flash.dialog2_submitSuccess}">
+	                <script type="text/javascript">
+	                    // hide the dialog
+	                    var m = CAF.model("#{caf:cid('dialog2')}");
+	                    m.hide();
+	                </script>
+	            </caf_f:logicIf>
+            </caf_h:panelHideable>
+        </caf_h:modalDialog>
+
+	</caf_h:form>
+	
+</ui:composition>

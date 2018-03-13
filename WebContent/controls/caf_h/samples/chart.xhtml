@@ -1,0 +1,55 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+        <caf_h:formattedMessages id="messages"/>
+
+        <div style="margin-top: 10px;" class="clearfix">
+            <div style="float:left; width:49%">
+		        <caf_h:chart id="piechart" 
+		            var="sourceList" value="#{chartBean.sourceListProvider}"
+		            color="#ACACAC" gridColor="#FFFFFF" gridStyle="Solid-Line"
+		            height="200" width="200" 
+		            legendLocation="Right" legendStyleClass="portlet-font"
+		            padding="10" rows="10" series="row"
+		            showLegend="true" type="pie">
+		            <caf_h:chartLabelColumn itemLabel="#{sourceList[0]}"/>
+		            <caf_h:chartDataColumn itemValue="#{sourceList[1]}"
+		                color="#DCDCDC" tooltip="#{sourceList[0]} : #{sourceList[1]}">
+		                <caf_h:commandLink action="#{chartBean.doAction}">
+		                    <f:param name="TestParam" value="#{sourceList[0]}"/>
+		                </caf_h:commandLink>
+		            </caf_h:chartDataColumn>
+		        </caf_h:chart>
+            </div>
+            <div style="float:left; width:49%">
+		        <caf_h:chart id="barchart" 
+		            var="sourceList" value="#{chartBean.sourceListProvider}"
+		            color="#ACACAC" gridColor="#FFFFFF" gridStyle="Solid-Line"
+		            height="200" width="200" 
+		            legendLocation="Top" legendStyleClass="portlet-font legend-padding"
+		            numberofGridLines="5" padding="10" 
+		            rows="10" series="row"
+		            showLegend="true" type="bar">
+		            <caf_h:chartLabelColumn itemLabel="#{sourceList[0]}"/>
+		            <caf_h:chartDataColumn itemValue="#{sourceList[1]}" 
+		                color="#DCDCDC" tooltip="#{sourceList[0]} : #{sourceList[1]}">
+		                <caf_h:asyncCommandLink action="#{chartBean.doAction}">
+		                    <f:param name="TestParam" value="#{sourceList[0]}"/>
+		                </caf_h:asyncCommandLink>
+		            </caf_h:chartDataColumn>
+		        </caf_h:chart>
+            </div>
+        </div>
+
+    </caf_h:form>
+
+    <style type="text/css">
+        .legend-padding {
+            padding-right: 1em;
+        }
+    </style>    
+</ui:composition>

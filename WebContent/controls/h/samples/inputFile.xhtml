@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html">
+	<caf_h:form></caf_h:form>
+	<div style="width:30%;">
+		<h:form id="form" enctype="multipart/form-data">
+			<h:messages id="messages" globalOnly="true" />
+			<h:message for="fileInput" styleClass="portlet-msg-error" />
+			
+			<div style="margin-top: 10px;">Please select a text file <span style="font-size: .8em;">smaller then 1MB</span></div>
+			<div>
+                <h:inputFile id="fileInput" value="#{fileBean.file}" validator="#{fileBean.validateFile}"/> 
+                <h:commandButton id="button1" value="Submit" action="#{fileBean.upload}" />
+            </div>
+			<h:inputTextarea id="fileContent" value="#{fileBean.fileContent}" readonly="true"/>
+		</h:form>
+	</div>
+</ui:composition>

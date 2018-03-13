@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    
+    <caf_h:form id="form">
+        <caf_h:panelPropertyGroup label='Server-Side Converter: (Value before conversion is "#{inputBean.value}")'>
+            <caf_h:panelPropertyLine id="line1" label='Input #1'>
+                <caf_h:inputText id="input1" value="#{inputBean.value}" >
+                    <f:converter converterId="caf.war.wm_opencaf_showcase.converter.custom"/>
+                </caf_h:inputText>
+            </caf_h:panelPropertyLine>                 
+            <caf_h:asyncCommandButton id="apply">Submit</caf_h:asyncCommandButton>
+        </caf_h:panelPropertyGroup>        
+    </caf_h:form>
+    
+</ui:composition>

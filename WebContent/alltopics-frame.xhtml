@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>All Topics</title>
+</head> 
+<body>
+	<ui:composition>      
+		<link rel="stylesheet" type="text/css" href="stylesheet.css" />
+		<div class="wrapper" style="margin-bottom: -22px;">
+			<h1 class="bar">All Topics</h1>
+			<div class="indexContainer">
+				<caf_h:form id="form">
+					<caf_h:inputFilter id="filter" for="topicList" width="input100"
+						showGoButton="true" />
+					<div id="tree-scroll"> 
+						<caf_h:dataTree id="topicList" var="topic"
+							value="#{allTopics.topicTree}" width="100%"
+							rowClasses="portlet-section-body,portlet-section-alternate"
+							progressFlashOnComplete="false" progressDelay="3000">
+							<caf_h:dataTreeToggle id="treeToggle">
+								<ui:fragment rendered="#{not empty topic.link and empty async}">
+									<a target="topicFrame" href="#{topic.link}" class="treeLink">
+										<i>#{topic.displayName}</i>
+									</a>
+								</ui:fragment>
+								<ui:fragment rendered="#{empty topic.link}">
+									<i>#{topic.displayName}</i>
+								</ui:fragment>
+							</caf_h:dataTreeToggle>
+                            <script type="text/javascript">
+                                // Remove current listeners after async request
+                                $$('a.treeLink').each(function(item) { item.stopObserving('click') } );
+                                $$('a.treeLink').invoke('observe', 'click', function() {
+                                  newPathName = this.pathname + this.search;
+                                  window.top.postMessage('iframe_redir', '*');
+                                } );
+                           </script>   
+						</caf_h:dataTree>
+					</div>
+				</caf_h:form>
+			</div>
+			<div style="height: 22px;"></div>
+		</div>
+		<div class="subNav">
+			<div style="height: 16px"></div>
+		</div>
+	</ui:composition>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+    
+    <caf_h:form id="form">
+        <div style="margin-top: 10px;" class="clearfix">
+            <div style="float:left; width:50%">
+                <caf_h:gmap id="map" width="100%" height="400px" 
+                    key="#{gmapBean.gmapsApiKey}"
+                    initialAddress="#{gmapBean.address}" 
+                    latitude="#{gmapBean.latitudeReadOnly}" longitude="#{gmapBean.longitudeReadOnly}" 
+                    type="#{gmapBean.mapTypeReadOnly}" zoom="#{gmapBean.zoomReadOnly}" >
+                </caf_h:gmap>
+            </div>
+            <div style="float:right; width:48%">
+                <caf_h:disjointForm id="mapform">
+                    <caf_h:panelPropertyGroup id="mapPropGroup" label="Map Options">
+                        <caf_h:panelPropertyLine id="propertyLine" label="Gmaps Api Key">
+                            <caf_h:inputText value="#{gmapBean.gmapsApiKey}" width="input20"/>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine1" label="Address">
+                            <caf_h:inputText id="address" value="#{gmapBean.address}" width="input20"/>
+                            <caf_h:outputButton id="setAddressButton" label="Client-Side Update">
+                                <caf_h:gmapInvokeScript action="setAddress" control="map" event="onclick" id="gMapInvokeScript">
+                                    <f:facet name="value">
+                                        <caf_h:scriptReturnValue action="getValue" control="address" id="getValueClientScript"/>
+                                    </f:facet>
+                                </caf_h:gmapInvokeScript>
+                            </caf_h:outputButton>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine2" label="Latitude">
+                            <caf_h:inputText id="latitude" value="#{gmapBean.latitude}" width="input20">
+                                <caf_f:convertDouble/>
+                            </caf_h:inputText>
+                            <caf_h:outputButton id="setLatitudeButton" label="Client-Side Update">
+                                <caf_h:gmapInvokeScript action="setCoords" control="map" event="onclick" id="gMapInvokeScript1">
+                                    <f:facet name="value">
+                                        <caf_h:gmapReturnCoordsScript id="gMapGetCoordsScript1">
+                                            <f:facet name="latitude">
+                                                <caf_h:scriptReturnValue action="getValue" control="latitude" id="getValueClientScript2"/>
+                                            </f:facet>
+                                            <f:facet name="longitude">
+                                                <caf_h:scriptReturnValue action="getValue" control="longitude" id="getValueClientScript1"/>
+                                            </f:facet>
+                                        </caf_h:gmapReturnCoordsScript>
+                                    </f:facet>
+                                </caf_h:gmapInvokeScript>
+                            </caf_h:outputButton>                            
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine3" label="Longitude">
+                            <caf_h:inputText id="longitude" value="#{gmapBean.longitude}" width="input20">
+                                <caf_f:convertDouble/>
+                            </caf_h:inputText>
+                            <caf_h:outputButton id="setLongitudeButton" label="Client-Side Update">
+                                <caf_h:gmapInvokeScript action="setCoords" control="map" event="onclick" id="gMapInvokeScript2">
+                                    <f:facet name="value">
+                                        <caf_h:gmapReturnCoordsScript id="gMapGetCoordsScript2">
+                                            <f:facet name="latitude">
+                                                <caf_h:scriptReturnValue action="getValue" control="latitude" id="getValueClientScript4"/>
+                                            </f:facet>
+                                            <f:facet name="longitude">
+                                                <caf_h:scriptReturnValue action="getValue" control="longitude" id="getValueClientScript3"/>
+                                            </f:facet>
+                                        </caf_h:gmapReturnCoordsScript>
+                                    </f:facet>
+                                </caf_h:gmapInvokeScript>
+                            </caf_h:outputButton>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine4" label="Zoom">
+                            <caf_h:inputText id="zoom" value="#{gmapBean.zoom}" width="input20">
+                                <caf_f:convertInteger/>
+                                <f:validateLongRange minimum="0" maximum="20"/>
+                            </caf_h:inputText>
+                            <caf_h:outputButton id="setZoomButton" label="Client-Side Update">
+                                <caf_h:gmapInvokeScript action="setZoom" control="map" event="onclick" id="gMapInvokeScript3">
+                                    <f:facet name="value">
+                                        <caf_h:scriptReturnValue action="getValue" control="zoom" id="getValueClientScript5"/>
+                                    </f:facet>
+                                </caf_h:gmapInvokeScript>
+                            </caf_h:outputButton>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="propertyLine5" label="Map Type">
+                            <caf_h:selectOneMenu disabledClass="disabled" enabledClass="enabled" id="mapType" value="#{gmapBean.mapType}" width="input20">
+                                <caf_f:selectItem id="selectItem" itemValue="G_NORMAL_MAP"/>
+                                <caf_f:selectItem id="selectItem1" itemValue="G_SATELLITE_MAP"/>
+                                <caf_f:selectItem id="selectItem2" itemValue="G_HYBRID_MAP"/>
+                            </caf_h:selectOneMenu>
+                            <caf_h:outputButton id="setMapTypeButton" label="Client-Side Update">
+                                <caf_h:gmapInvokeScript action="setMapType" control="map" event="onclick" id="gMapInvokeScript4">
+                                    <f:facet name="value">
+                                        <caf_h:scriptReturnValue action="getValue" control="mapType" id="getValueClientScript6"/>
+                                    </f:facet>
+                                </caf_h:gmapInvokeScript>
+                            </caf_h:outputButton>
+                        </caf_h:panelPropertyLine>
+                        <caf_h:panelPropertyLine id="submitLine" style="margin-top: 15px;">
+                            <caf_h:asyncCommandButton id="button" refresh="map" value="Server-Side Update"/>
+                        </caf_h:panelPropertyLine>
+                    </caf_h:panelPropertyGroup>
+                </caf_h:disjointForm>
+            </div>
+        </div>
+    </caf_h:form>    
+</ui:composition>

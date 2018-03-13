@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+
+        <caf_h:panelStaticRow id="row" width="100%" cellmargin="10px">
+            <caf_h:panelStaticCell id="cell1" width="35%">
+                <div class="cell1">
+                    Cell-One content
+                </div>
+            </caf_h:panelStaticCell>
+            <caf_h:panelStaticCell id="cell2" width="65%">
+                <div class="cell2">
+                    Cell-Two content
+                </div>
+            </caf_h:panelStaticCell>
+        </caf_h:panelStaticRow>
+
+    </caf_h:form>
+
+    <style type="text/css"> 
+        .cell1 {
+            background-color: red; 
+            color: white; 
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+        .cell2 {
+            background-color: blue; 
+            color: white; 
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+        }
+    </style>    
+</ui:composition>

@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <caf_h:form id="form">
+        
+        <caf_h:inputText id="input" value="Input Value Here"/>
+        
+        <caf_h:outputButton id="button1">Say Hi</caf_h:outputButton>
+
+        <caf_h:scriptInvoke id="invoke1" for="button1" event="onclick" 
+            action="growl" value="Hello from an invoke script." control="growler1">
+            <f:facet name="value">
+                <caf_h:scriptReturnValue action="getValue" control="input" event="onclick"/>
+            </f:facet>
+        </caf_h:scriptInvoke>
+
+        <caf_h:growler id="growler1" location="Top-Center" width="200px" 
+            life="10" speedin="0.5" speedout="0.5" />
+
+    </caf_h:form>
+
+</ui:composition>

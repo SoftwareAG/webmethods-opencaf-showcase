@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html" 
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:phaseListener binding="#{phaseListenerBean.phaseListener}" />
+
+    <f:phaseListener type="caf.war.wm_opencaf_showcase.controls.f.PhaseListenerBean" />
+
+	<caf_h:form id="form">
+        <h:commandButton id="button1" value="Action #1" />
+	</caf_h:form>
+
+    <caf_h:formattedMessages id="messages" />
+
+</ui:composition>

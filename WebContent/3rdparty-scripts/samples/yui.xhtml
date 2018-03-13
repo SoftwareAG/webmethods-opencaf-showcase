@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <!-- Load YUI (from CDN or your own server if you prefer) -->
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+
+    <style type="text/css">
+       .red-border {
+            border: thin solid red;
+            color: red;
+       }
+       .blue-border {
+            border: thin solid blue;
+            color: blue;
+       }
+    </style>  
+      
+    <caf_h:form id="form">
+    
+        <caf_h:inputText id="inputText" styleClass="yui-input"/>
+    
+    </caf_h:form>
+    
+    <script type="text/javascript">
+        //Do some simple YUI calls.
+		YUI().use('node', 'event', function (Y) {
+		    Y.all('.yui-input').each(function(input) {
+	            input.on('focus', function () {
+	                this.removeClass("red-border");
+	                this.addClass("blue-border");
+	            });
+	            input.on('blur', function () {
+	                this.removeClass("blue-border");
+	                this.addClass("red-border");
+	            });
+	            input.addClass("red-border");
+		    });
+		});        
+    </script>
+    
+</ui:composition>

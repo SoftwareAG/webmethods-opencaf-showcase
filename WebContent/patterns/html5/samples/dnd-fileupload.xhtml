@@ -1,0 +1,152 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <caf_h:form id="form" enctype="multipart/form-data">
+        <caf_h:inputFile id="file1" value="#{inputFileBean.value}"/>
+        <caf_h:inputFile id="file2" value="#{inputFileBean.value2}"/>
+    </caf_h:form>
+
+    <caf_h:progressBar id="progress" visible="false" 
+            hideEffect="Effect.BlindUp"
+            percentComplete="0" 
+            workMessage="Please wait..."/>
+
+    <div class="dnd-target">
+        <span>Drag and Drop files here.</span>
+    </div>
+    
+    <script type="text/javascript">
+        //Use prototypejs calls to handle the drag/drop.
+        Event.waitUntilLoaded(function() {
+            $$(".dnd-target").each(function(item) {
+	            item.on("dragenter", function(event){
+	                event.preventDefault(); //needed for for IE10/11 only?
+	            });
+                item.on("dragover", function(event) {
+                        $(this).addClassName("dnd-target-hover");
+                        event.preventDefault();
+                    });
+                item.on("dragleave", function(event) {
+                        $(this).removeClassName("dnd-target-hover");
+                    });
+                item.on("drop", function(event) {
+                        $(this).removeClassName("dnd-target-hover");
+                        event.preventDefault();
+                        
+                        //read the files 
+                        var files = event.dataTransfer.files
+                        if (files.length &lt; 1) {
+                            //no files?
+                            return;
+                        }
+                        
+                        //disable the fileinput control so it is not include in the FormData
+                        CAF.model('#{caf:cid("file1")}').setDisabled(true);
+                        CAF.model('#{caf:cid("file2")}').setDisabled(true);
+                        
+                        //start with the FormData of the CAF form
+                        var formData = new FormData($('#{caf:cid("form")}'));
+                        //inject the file into the form data using the same key as the caf file input control
+                        formData.append('#{caf:cid("file1")}', files[0]);
+                        if (files.length > 1) {
+                            formData.append('#{caf:cid("file2")}', files[1]);
+                        }                        
+                        //re-enable the fileinput control after building the FormData
+                        CAF.model('#{caf:cid("file1")}').setDisabled(false);
+                        
+                        //start a progress bar...
+                        var progressBar = CAF.model("#{caf:cid('progress')}");
+                        if (progressBar) {
+                            progressBar.updateProgress(0, "Uploading File...");
+                            progressBar.show();
+                        }
+                
+                        var xhr = new XMLHttpRequest();
+                        // If we are inside of a portlet then use the portlet action href, otherwise post to the custom servlet
+                        xhr.open('POST', '#{ShowcaseDefaultviewView.inPortletRequest ? ShowcaseDefaultviewView.fileUploadHref : "/wm_opencaf_showcase/FileUploadServlet"}');
+                        
+                        //tell the server to send the response as JSON
+                        xhr.setRequestHeader("Accept", "application/json");
+                        
+                        xhr.onload = function() {
+                            var responseObj = xhr.responseText.evalJSON(true);
+
+                            if (xhr.status == 200) {
+                                // success!
+                                CAF.Dialog.alert("The server received " + (responseObj.length) +  " files.");
+                            } else {
+                                // some error occured
+                                var msg = "";
+                                if (responseObj.error) {
+                                    if (responseObj.error.message) { 
+                                        msg += "&lt;h1&gt;" + responseObj.error.message + "&lt;/h1&gt;";
+                                    }
+                                    if (responseObj.error.summary) { 
+                                        msg += "&lt;p&gt;"  + responseObj.error.summary + "&lt;/p&gt;";
+                                    }
+                                    if (responseObj.error.details) {
+                                        msg += "&lt;h3&gt;" + responseObj.error.details + "&lt;/h3&gt;";
+                                    }                                
+                                }
+                                
+                                if (msg == "") {
+                                    msg = "&lt;h1&gt;Unexpected error detected&lt;/h1&gt;";
+                                }
+                                CAF.Dialog.error(msg);
+                            }
+                            
+                            
+                            //completed, update the progress bar
+                            var progressBar = CAF.model("#{caf:cid('progress')}");
+                            if (progressBar) {
+                                progressBar.updateProgress(100, "Completed.");
+                                
+		                        //hide the progress bar after 5 second delay
+		                        setTimeout(function() {
+		                            var progressBar = CAF.model("#{caf:cid('progress')}");
+		                            if (progressBar) {
+		                                progressBar.hide();
+		                            }
+		                        }, 5000);
+		                    }
+                        };
+					
+                        xhr.upload.onprogress = function (event) {
+                            if (event.lengthComputable) {
+                                var complete = (event.loaded / event.total * 100 | 0);
+                                //update the progress bar...
+	                            var progressBar = CAF.model("#{caf:cid('progress')}");
+	                            if (progressBar) {
+	                                progressBar.updateProgress(complete);
+                                }
+                            }
+                        }
+					
+                        xhr.send(formData);                
+                    });
+            });
+        });        
+    </script>
+    
+    <style type="text/css">
+        .dnd-target {
+            font-size: large; 
+            border: 10px dashed #ccc; 
+            width: 300px; 
+            min-height: 200px; 
+            margin: 20px auto;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 200px;
+            color: #ccc;
+         }
+        .dnd-target-hover { 
+            border-color: #0c0; 
+         }
+    </style>
+    
+</ui:composition>

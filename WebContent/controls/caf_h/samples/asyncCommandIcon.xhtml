@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages"/>
+	
+	<caf_h:form id="form">
+	   
+	   <caf_h:asyncCommandIcon id="icon1" value="Simple Command"
+	       url="/resources/blue.gif"
+	       urlMousedown="/resources/red.gif"
+	       urlMouseover="/resources/green.gif"
+	       action="#{commandBean.doAction}"/>
+
+       <caf_h:asyncCommandIcon id="icon2" value="Command With Parameters"
+           url="/resources/blue.gif"
+           urlMousedown="/resources/red.gif"
+           urlMouseover="/resources/green.gif"
+           action="#{commandBean.doActionWithParams}" style="margin-left: 15px;">
+           <f:param name="param1" value="value1"/>
+           <f:param name="param2" value="value2"/>
+       </caf_h:asyncCommandIcon>
+
+       <caf_h:asyncCommandIcon id="icon3" value="Command With Custom OnClick"
+           url="/resources/blue.gif"
+           urlMousedown="/resources/red.gif"
+           urlMouseover="/resources/green.gif"
+           action="#{commandBean.doActionWithParams}"  style="margin-left: 15px;" 
+           onclick="CAF.model(this).go({param1 : 'value1', param2 : value2});return false;" />
+
+    </caf_h:form>
+    
+    <script type="text/javascript">
+       var value2 = "value2 from js variable";
+    </script>
+	
+</ui:composition>

@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html"
+    xmlns:cafp_f="http://webmethods.com/jsf/cafp/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+        
+	    <caf_h:form id="form">
+	        <caf_h:outputButton id="button1">Click to navigate to public folders with a form POST</caf_h:outputButton>
+	        <cafp_h:portletUrlScript rendered="true"
+	            context="form" id="portletUrlScript1" event="onclick" for="button1" formMethod="POST">
+	            <f:facet name="portleturl">
+	                 <mws_f:extendedPortletUrl id="url1" type="render"
+	                     baseUrl="/folder.public" />
+	            </f:facet>
+	        </cafp_h:portletUrlScript>
+	
+	        <caf_h:outputButton id="button2">Click to navigate to public folders with a form GET</caf_h:outputButton>
+	        <cafp_h:portletUrlScript rendered="true"
+	            context="form" id="portletUrlScript2" event="onclick" for="button2" formMethod="GET">
+	            <f:facet name="portleturl">
+	                 <mws_f:extendedPortletUrl id="url2" type="render"
+	                     baseUrl="/folder.public" />
+	            </f:facet>
+	        </cafp_h:portletUrlScript>
+	
+	        <caf_h:outputButton id="button3">Click to navigate to public folders with a link</caf_h:outputButton>
+	        <cafp_h:portletUrlScript rendered="true"
+	            context="link" id="portletUrlScript3" event="onclick" for="button3">
+	            <f:facet name="portleturl">
+	                 <mws_f:extendedPortletUrl id="url3" type="render"
+	                     baseUrl="/folder.public" />
+	            </f:facet>
+	        </cafp_h:portletUrlScript>
+	    </caf_h:form>
+    </caf_f:view>
+
+</ui:composition>

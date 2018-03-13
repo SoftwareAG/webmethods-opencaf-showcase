@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_h="http://webmethods.com/jsf/mws/html">
+
+    <mws_h:panelEmailMessage id="emailMsgPanel">
+        <f:facet name="subject">Subject Here</f:facet>
+        <f:facet name="from">#{personBean.currentUser.email}</f:facet>
+        <h1>Email Body here</h1>
+        <p>
+            More content
+        </p>
+    </mws_h:panelEmailMessage>
+
+</ui:composition>

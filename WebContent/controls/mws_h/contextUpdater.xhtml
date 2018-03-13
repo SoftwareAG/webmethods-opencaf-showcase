@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<body>
+    <ui:composition template="/templates/page_with_syntaxhighlighter.xhtml">
+        <ui:param name="pageTitle" value="UI Tags > mws_h > contextUpdater" />
+        <ui:define name="body">
+
+            <c:choose>
+            <c:when test="#{ShowcaseDefaultviewView.inPortletRequest}">
+            <ui:include src="samples/contextUpdater.xhtml"/>
+            </c:when>
+            <c:otherwise>
+                <div id="sample-context-error" class="portlet-msg-error">Sorry, this sample only works in a portlet request</div>
+                <p>
+                    <a target="_top" href="#{mwsCluster.frontEndUrl}/folder.wm_opencaf_showcase?wmp_tc=#{samplesBean.portletDbId}&amp;wmp_rt=action&amp;targetPage=controls%2fmws_h%2fcontextUpdater.xhtml&amp;wmp_ta=switchPage">
+                        Click here to view this page in the context of a portlet.
+                    </a>
+                </p>
+            </c:otherwise>
+            </c:choose>
+
+             
+            <h4 class="sourcetabbox">Source</h4>
+            <div class="sourcetabbox">
+                <caf_h:form id="tabsform">
+                    <caf_h:toggleTabs id="sourceTabs" value="xhtml">
+                        <caf_f:selectItem id="xhtmlItem" itemValue="xhtml" itemLabel="contextUpdater.xhtml" />
+                        <caf_f:selectItem id="javaItem" itemValue="java" itemLabel="ContextUpdater.java" />
+                        <caf_f:selectItem id="xmlimportItem" itemValue="xmlimport" itemLabel="xmlImport.xml" />
+                    </caf_h:toggleTabs>
+                    <caf_h:panelHideable id="xhtml" showEffect="Effect.Appear">
+                        <pre class="brush:xhtml;toolbar:false;highlight:[55,56,70,74,75]">#{samplesBean.webResource("/controls/mws_h/samples/contextUpdater.xhtml")}</pre>
+                    </caf_h:panelHideable>
+                    <caf_h:panelHideable id="java" showEffect="Effect.Appear">
+                        <pre class="brush:java;toolbar:false">#{samplesBean.cpResource("/caf/war/wm_opencaf_showcase/controls/mws_h/ContextUpdater.java")}</pre>
+                    </caf_h:panelHideable>
+                    <caf_h:panelHideable id="xmlimport" showEffect="Effect.Appear">
+                        <pre class="brush:xml;toolbar:false">#{samplesBean.webResource("/WEB-INF/xmlimport-resources/contextUpdater.xml")}</pre>
+                    </caf_h:panelHideable>
+                </caf_h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+</html>

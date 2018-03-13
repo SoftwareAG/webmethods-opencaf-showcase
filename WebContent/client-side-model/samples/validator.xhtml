@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:form id="form">
+
+	    <h:messages id="messages" showDetail="true" showSummary="false" 
+	       errorClass="portlet-msg-error" fatalClass="portlet-msg-error" 
+	       warnClass="portlet-msg-alert" infoClass="portlet-msg-info"/>
+        
+        <caf_h:dataAsyncTable id="dataTable" value="#{updateTableBean.tableContentProvider}" 
+            width="100%" var="row" rows="5"
+            headerClass="portlet-section-subheader"
+            footerClass="portlet-section-footer"
+            rowClasses="portlet-section-body,portlet-section-alternate" >
+            <caf_h:columnStandard id="field1">
+                <f:facet name="header">
+                    Field1
+                </f:facet>
+                #{row.field1}
+            </caf_h:columnStandard>
+            <h:column id="field2">
+                <f:facet name="header">
+                    Field2
+                </f:facet>
+                <ui:remove> NOTE: useClientSideValidation is set to false to disable the built in client-side validators </ui:remove>
+                <caf_h:inputText id="field2Input" value="#{row.field2}" useClientSideValidation="false" required="true" />
+            </h:column>
+        </caf_h:dataAsyncTable>
+        
+        <script type="text/javascript">
+	        // Create a new anonymous function, for local variable scoping
+	        (function(){
+	            var controlId = "#{caf:cid('field2Input')}";
+	            var validatorObj = {
+                    /**
+                     * Custom Validate function for a required component.
+                     * This function is intended to be used as the validate() method
+                     * of an object.
+                     * 
+                     * @param id Client-side id of control to validate.
+                     * @param value Control value to validate.
+                     * @return Empty string ("") if value is valid,
+                     * or non-empty (localized) error message if value is not valid.
+                     */
+                    validate: function(id, value) {
+                        var model = CAF.model(id);
+                        // first try isEmpty(); then fallback to falsey value: "", [], false, 0, null
+                        if (model &amp;&amp; model.isEmpty ? model.isEmpty() : value == "" || value == null) {
+                            var row = $(id).up("tr"); //walk up to the containing row
+                            var table = row.up("table"); //walk up to the containing table
+                            var tableModel = CAF.model(table);
+                            var rowIdx = tableModel.indexOf(row); //calculate index of the row
+                            return formatMessage(this.customMessage, [rowIdx]);
+                        }
+                        
+                        return "";
+                    },
+                    customMessage: "Field2 in row {0} cannot be empty."
+	            };
+	            
+	            //some unique key to prevent registering the same validator more than once.
+	            var validatorKey = "CAF.Validator.custom##{caf:cid('field2Input')}";
+
+                //register the custom validator
+	            CAF.Input.addValidator(controlId, validatorObj, validatorKey);
+
+			// Close off the anonymous function and execute it
+			})();                
+        </script>        
+        
+        <caf_h:asyncCommandButton id="apply">Submit</caf_h:asyncCommandButton>
+        
+	</caf_h:form>
+	
+</ui:composition>

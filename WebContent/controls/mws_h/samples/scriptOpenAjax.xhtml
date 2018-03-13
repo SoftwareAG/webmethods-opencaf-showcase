@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_h="http://webmethods.com/jsf/mws/html">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+        <caf_h:form id="form">
+            <caf_h:asyncCommandButton id="raiseEvents"
+                action="#{openajaxBean.doEvent}"
+                refresh="_none" 
+                value="Raise an OpenAjax event"/>        
+        </caf_h:form>
+
+        <ol id="eventsLog"></ol>
+
+        <script type="text/javascript">
+            function myHandleOpenAjaxEvent(eventName, eventBody) {
+                $('eventsLog').insert("<li>" + eventName + " - " + Object.toJSON(eventBody) + "</li>");
+            }
+        </script>
+        <mws_h:scriptOpenAjax id="openajax1" 
+            shouldSubscribe="true" 
+            openAjaxTopic="wm_opencaf_showcase.openajax.sample" 
+            value="myHandleOpenAjaxEvent" />
+
+    </caf_f:view>
+
+</ui:composition>

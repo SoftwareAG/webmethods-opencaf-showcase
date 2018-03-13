@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_h="http://webmethods.com/jsf/mws/html">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+        <caf_h:form id="form">
+            <div>
+                <caf_h:oneWayToggleButton id="toggle1" for="pickerDlg1">
+                    Show One Person Picker Dialog
+                </caf_h:oneWayToggleButton>
+                <div>
+                    Selected Value: <span id="selected1">#{peopleSearchBean.person}</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 1em;">
+                <caf_h:oneWayToggleButton id="toggle2" for="pickerDlg2">
+                    Show Many People Picker Dialog
+                </caf_h:oneWayToggleButton>
+                <div>
+                    Selected Values: 
+                    <caf_h:dataSimpleList id="list1" 
+                        var="row" value="#{peopleSearchBean.people}" 
+                        rows="1000" first="0" marker="decimal">
+                        #{row}
+                    </caf_h:dataSimpleList>
+                </div>
+            </div>
+
+            <mws_h:principalPickerDialog id="pickerDlg1"
+                useAsyncGoButton="true"
+                searchQueryFactory="#{peopleSearchBean.searchQueryFactory}"
+                savedSearchProvider="#{peopleSearchBean.savedSearchProvider}"
+                searchOptionsManager="#{peopleSearchBean.searchOptionsManager}"
+                multipleSelectionsAllowed="false"
+                targetValue="#{peopleSearchBean.person}"
+            />
+
+            <mws_h:principalPickerDialog id="pickerDlg2"
+                useAsyncGoButton="true"
+                searchQueryFactory="#{peopleSearchBean.searchQueryFactory}"
+                savedSearchProvider="#{peopleSearchBean.savedSearchProvider}"
+                searchOptionsManager="#{peopleSearchBean.searchOptionsManager}"
+                multipleSelectionsAllowed="true"
+                targetValue="#{peopleSearchBean.people}"
+            />
+        
+        </caf_h:form>
+
+    </caf_f:view>
+
+</ui:composition>

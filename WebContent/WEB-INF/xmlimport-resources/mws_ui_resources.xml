@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.webmethods.com/schema/xmlImport.xsd">
+
+    <!-- 1. App Folders -->
+    <context alias="folder.wm_opencaf_showcase">
+        <!-- Sample page for mws_ui:resources demo -->
+        <folder name="Resources Sample #1"
+            userAlias="page.wm_opencaf_showcase.mws_ui.resources1">
+            <page>
+                <row>
+                    <column width="50%">
+                        <wm_noodle_pack___htmltext name="Sample Portlet #1" 
+                          text="Placeholder text #1" />
+                    </column>
+                    <column width="50%">
+                        <wm_noodle_pack___htmltext name="Sample Portlet #2" 
+                          text="Placeholder text #2" />
+                    </column>
+                </row>
+            </page>
+        </folder>
+        <!-- Sample page for mws_ui:resources demo -->
+        <folder name="Resources Sample #2"
+            userAlias="page.wm_opencaf_showcase.mws_ui.resources2">
+            <page>
+                <row>
+                    <column width="50%">
+                        <wm_noodle_pack___htmltext name="Sample Portlet #3" 
+                          text="Placeholder text #3" />
+                    </column>
+                </row>
+            </page>
+        </folder>
+    </context>
+</CONFIG>             

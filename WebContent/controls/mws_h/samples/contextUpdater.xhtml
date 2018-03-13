@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_h="http://webmethods.com/jsf/mws/html">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+        <caf_f:logicIf value="#{not contextUpdaterBean.workspace}">
+            <p>
+                This control type only works when you are viewing a workspace.                
+            </p>
+            <form>
+	            <button id="button1" onclick="return createDemoWorkspace();" type="button">
+	                Create a demo workspace
+	            </button>
+            </form>
+	        <script type="text/javascript">
+	            function createDemoWorkspace() {  
+	                Noodle.Page.createWorkspace({
+	                    name: "Showcase Context Updater Demo",
+	                    type: Noodle.Page.WorkspaceType.GENERIC,
+	                    templateURI: "template.wm_opencaf_showcase.contextupdater",
+	                    createView: true,
+	                    createTab: true,
+	                    isTemp: false,
+	                    redirect: true
+	                });
+	            }           
+	        </script>
+        </caf_f:logicIf>
+        <caf_f:logicElse value="true">
+	        <caf_h:form id="form">
+	            
+	            <div>
+	                <label for="#{caf:cid('keyInput1')}"><span class="caf-label-text">showcase.key1</span><span class="caf-label-separator">:</span></label>
+	            </div>
+	            <div>
+	                <caf_h:inputText id="keyInput1" width="input30"/>
+	                <button id="button1" onclick="return myContextUpdate();" type="button">
+	                    Apply Value
+	                </button>
+	            </div>
+	
+	            <div style="margin-top: 1em;">
+	                <label for="#{caf:cid('keyInput2')}"><span class="caf-label-text">showcase.key2</span><span class="caf-label-separator">:</span></label>
+	            </div>
+	            <div>
+	                <caf_h:inputText id="keyInput2" width="input30"/>
+	                <caf_h:outputButton id="button2">
+	                    Apply Value
+	                    <caf_h:scriptInvoke id="invoke1" action="updateContext" 
+	                        control="contextUpdater2" event="onclick">
+	                        <f:facet name="value">
+	                           <caf_h:scriptReturnValue control="keyInput2" action="getValue"/>
+	                        </f:facet>
+	                    </caf_h:scriptInvoke> 
+	                </caf_h:outputButton>
+	            </div>
+	
+	
+	        </caf_h:form>
+	
+	        <script type="text/javascript">
+	            function myContextUpdate(newValue) {
+	                var m = CAF.model("#{caf:cid('keyInput1')}");
+	                Noodle.Context.update('#{caf:cid("contextUpdater1")}', m.getValue());
+	            }
+	        </script>
+
+	        <mws_h:contextUpdater id="contextUpdater1" name="showcase.key1" />
+            <mws_h:contextUpdater id="contextUpdater2" name="showcase.key2" />
+        </caf_f:logicElse>
+
+    </caf_f:view>
+
+</ui:composition>

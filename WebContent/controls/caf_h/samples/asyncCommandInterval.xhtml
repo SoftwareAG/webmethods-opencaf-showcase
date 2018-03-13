@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	
+	<caf_h:formattedMessages id="messages"/>
+	
+	<caf_h:form id="form">
+	    <h:inputHidden id="count" value="#{commandIntervalBean.intervalCount}"/>
+
+       <caf_h:asyncCommandInterval id="inteval1"
+           interval="10"
+           action="#{commandIntervalBean.doAction}"/>
+	   
+	    <button id="stop" onclick="return false;">Stop</button>
+	    <button id="start" onclick="return false;" disabled="disabled">Start</button>
+        <script type="text/javascript">
+            $("stop").on("click", function() {
+                //stop the interval command when the button is clicked
+                var m=CAF.model("#{caf:cid('inteval1')}");
+                if (m) {
+                    m.stop();
+                    
+                    //toggle the disabled status of the buttons
+                    $("start").writeAttribute("disabled", null);
+                    $("stop").writeAttribute("disabled", "disabled");
+                } 
+                return false;
+            });
+            $("start").on("click", function() {
+                //stop the interval command when the button is clicked
+                var m=CAF.model("#{caf:cid('inteval1')}");
+                if (m) {
+                    m.start();
+
+                    //toggle the disabled status of the buttons
+                    $("start").writeAttribute("disabled", "disabled");
+                    $("stop").writeAttribute("disabled", null);
+                } 
+                return false;
+            });
+        </script>
+	   
+	</caf_h:form>
+	
+</ui:composition>

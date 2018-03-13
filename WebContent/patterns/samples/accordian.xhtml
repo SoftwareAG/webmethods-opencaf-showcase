@@ -1,0 +1,112 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:remove> Provide some CSS styling to the panels </ui:remove>
+    <style type="text/css">
+        .accordian-block {
+            border: 2px solid #d3d3d3;
+            border-radius: 4px;
+        }
+        .accordian-section-header {
+            padding: 0.5em; 
+            border: 1px outset #d3d3d3; 
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            color: #555555;
+            background-color: #e6e6e6;
+        }
+        .accordian-section-header:HOVER {
+            color: #e6e6e6;
+            background-color: #555555;
+            cursor: pointer;
+        }
+        .accordian-section-header-selected {
+            color: #e6e6e6;
+            background-color: #555555;
+        }
+        .accordian-section-body {
+            padding: 2em;
+        }
+    </style>    
+    
+    <caf_h:formattedMessages id="messages" globalOnly="true"/>
+	<caf_h:form id="form">
+        <div class="accordian-block">
+            <div id="toggle-one" class="accordian-section-header">
+                Panel One
+            </div>
+            <caf_h:panelHideable id="content-one" visible="false"
+                styleClass="accordian-section"
+                showEffect="Effect.SlideDown" showEffectOptions="duration: 0.5" 
+                hideEffect="Effect.SlideUp" hideEffectOptions="duration: 0.5">
+                <div class="accordian-section-body">
+                    This is Panel Number One!
+                </div>
+            </caf_h:panelHideable>
+            
+            <div id="toggle-two" class="accordian-section-header">
+                Panel Two
+            </div>
+            <caf_h:panelHideable id="content-two" visible="false"
+                styleClass="accordian-section"
+                showEffect="Effect.SlideDown" showEffectOptions="duration: 0.5" 
+                hideEffect="Effect.SlideUp" hideEffectOptions="duration: 0.5">
+                <div class="accordian-section-body">
+                    This is Panel Number Two!
+                </div>            
+            </caf_h:panelHideable>
+            
+            <div id="toggle-three" class="accordian-section-header">
+                Panel Three
+            </div>
+            <caf_h:panelHideable id="content-three" visible="false" 
+                styleClass="accordian-section"
+                showEffect="Effect.SlideDown"  showEffectOptions="duration: 0.5"
+                hideEffect="Effect.SlideUp" hideEffectOptions="duration: 0.5">
+                <div class="accordian-section-body">
+                    This is Panel Number Three!
+                </div>
+            </caf_h:panelHideable>
+        </div>
+	</caf_h:form>
+
+    <script type="text/javascript">
+        //pre-load the effects library so there isn't a delay on the first click
+        Library.load("scriptaculous/effects");
+        
+        // attach 'click' listeners to the each of the section header elements
+        //  to accomplish the accordian effect.
+        $$(".accordian-section-header").each(function(item) {
+            item.on("click", function(event) {
+                    //find the panel associated with what was clicked
+                    var targetBody = $(this).next(".accordian-section");
+                    
+                    //hide the other sections
+                    $(this).up().select(".accordian-section").each(function(section) {
+                        if (section != targetBody) {
+                            CAF.model(section).hide();
+                        }
+                    });
+                    $(this).up().select(".accordian-section-header").each(function(header) {
+                        if (header != this) {
+                            $(header).removeClassName("accordian-section-header-selected");
+                        }
+                    });
+                    
+                    // toggle the visiblity of the panel that was clicked
+                    var m = CAF.model(targetBody);
+                    if (m.isVisible()) {
+                        $(this).removeClassName("accordian-section-header-selected");
+                    } else {
+                        $(this).addClassName("accordian-section-header-selected");
+                    }
+                    m.toggle();
+                });
+        });
+    </script>
+
+</ui:composition>

@@ -1,0 +1,69 @@
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:c="http://java.sun.com/jstl/core">
+<ui:composition template="jui.xhtml">
+	<ui:define name="sample">
+		<caf_h:includeScript value="/theming/jui/samples/dialog.js" />
+		<caf_h:includeScript value="/theming/jui/samples/button.js" />
+		<c:set var="sampleName" value="dialog" scope="request" />
+		<script type="text/javascript">
+			//Custom dialog JS	
+			Event.waitUntilLoaded(function(){
+				$jq( "#dialog" ).dialog({
+					buttons: {
+						"Apply": function() {
+							$jq( this ).dialog( "close" );
+						},
+						Cancel: function() {
+							$jq( this ).dialog( "close" );
+						}
+					}
+				});
+				var eventFn = function(event){debugger};
+
+				$("#{caf:cid('asyncChangeThemebtn')}").observe('click', function(event) {
+					$jq('#dialog').remove();
+				});
+				juiDialogify($("#{caf:cid('modalDialog')}"), {minHeight: '120'});
+				juiButtonify($("#{caf:cid('modalDialog')}"));
+			});
+		</script>
+		<ui:include src="samples/dialog.xhtml"></ui:include>
+		
+		<caf_h:oneWayToggleButton value="Open MWS Dialog" id="oneWayMWSButton" for="modalMWSDialog"/>
+		<caf_h:modalDialog id="modalMWSDialog" isMoveable="true" rendered="true" progressFlashOnComplete="false" width="300px">
+			<span>Ron RONNNNNNNN is looking for darts</span>
+			<f:facet name="title">Basic dialog</f:facet>
+			<f:facet name="submit">
+				<caf_h:asyncCommandButton value="Apply" id="mwsAcceptButton" />
+			</f:facet>
+			<f:facet name="cancel">
+				<caf_h:oneWayToggleButton value="Cancel" for="modalMWSDialog" id="mwsCancelButton" />
+			</f:facet>
+			<f:facet name="other"></f:facet>
+		</caf_h:modalDialog>			
+	</ui:define>
+	
+	<ui:define name="sampleTabs">
+		<caf_f:selectItem id="xhtmlItem" itemValue="xhtml" itemLabel="dialog.xhtml" />
+		<caf_f:selectItem id="jsItem1" itemValue="jsDialog" itemLabel="dialog.js" />
+		<caf_f:selectItem id="jsItem2" itemValue="jsButton" itemLabel="button.js" />
+	</ui:define>	
+	
+	<ui:define name="samplePanels">
+		<caf_h:panelHideable id="xhtml" showEffect="Effect.Appear">
+			<pre class="brush:xhtml;toolbar:false">#{samplesBean.webResource("/theming/jui/samples/dialog.xhtml")}</pre>
+		</caf_h:panelHideable>
+		<caf_h:panelHideable id="jsDialog" showEffect="Effect.Appear">
+			<pre class="brush:js;toolbar:false">#{samplesBean.webResource("/theming/jui/samples/dialog.js")}</pre>
+		</caf_h:panelHideable>
+		<caf_h:panelHideable id="jsButton" showEffect="Effect.Appear">
+			<pre class="brush:js;toolbar:false">#{samplesBean.webResource("/theming/jui/samples/button.js")}</pre>
+		</caf_h:panelHideable>
+	</ui:define>	
+</ui:composition>    
+</html>

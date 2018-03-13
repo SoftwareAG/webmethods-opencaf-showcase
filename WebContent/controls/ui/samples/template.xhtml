@@ -1,0 +1,19 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h1>Text outside ui:composition tags will be ignored.</h1>
+<ui:composition template="../#{samplesBean.getResourcePage()}">
+	<ui:define name="example">
+		<div>
+			First insert:
+			<ui:insert name="first" />
+		</div>
+		<div>
+			Second insert:
+			<ui:insert name="second" />
+		</div>
+	</ui:define>
+</ui:composition>
+<h1>Text outside ui:composition tags will be ignored.</h1>
+</html>

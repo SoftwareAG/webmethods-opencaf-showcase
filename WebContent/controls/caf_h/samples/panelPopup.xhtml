@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <caf_h:form id="form">
+
+        <caf_h:panelPopup id="popup1" for="blockPanel1" styleClass="caf-popup-menu"
+            position="mouse">
+            <div class="caf-popup-menu-item">
+                <a href="javascript:void(0)">Item One</a>
+            </div>
+            <div class="caf-popup-menu-item">
+                <a href="javascript:void(0)">Item Two</a>
+            </div>
+        </caf_h:panelPopup>
+
+        <caf_h:panelPopup id="popup2" forRightClick="blockPanel2" styleClass="caf-popup-menu"
+            position="mouse" closeOnClick="true">
+            <div class="caf-popup-menu-item">
+                <a href="javascript:void(0)">Item One</a>
+            </div>
+            <div class="caf-popup-menu-item">
+                <a href="javascript:void(0)">Item Two</a>
+            </div>
+        </caf_h:panelPopup>
+
+        <caf_h:panelPopup id="popup3" hover="blockPanel3" 
+            close="true"
+            position="over" offsetx="10" offsety="10"
+            styleClass="hover-panel-block">
+            <p>
+                Hover Panel Content Here
+            </p>
+        </caf_h:panelPopup>
+            
+        <caf_h:panelBlock id="blockPanel1" styleClass="to-overlay-block">
+            Click here to open the popup panel
+        </caf_h:panelBlock>
+
+        <caf_h:panelBlock id="blockPanel2" styleClass="to-overlay-block">
+            Right-Click here to open the popup panel
+        </caf_h:panelBlock>
+
+        <caf_h:panelBlock id="blockPanel3" styleClass="to-overlay-block">
+            Hover here to open the popup panel
+        </caf_h:panelBlock>
+    </caf_h:form>
+    
+    <style type="text/css">       
+        .to-overlay-block {
+            margin-top: 15px;
+            margin-left: 25px;
+            margin-right: 25px;
+            height:100px;
+            border: 2px solid blue;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 100px;
+            box-sizing:border-box;
+            -moz-box-sizing:border-box;
+            -webkit-box-sizing:border-box;        
+        }
+        .hover-panel-block {
+            height: 50px;
+            width: 250px;
+            background-color: blue;
+            color: white;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</ui:composition>
+

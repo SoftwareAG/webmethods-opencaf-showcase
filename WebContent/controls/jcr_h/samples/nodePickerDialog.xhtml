@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:jcr_h="http://webmethods.com/jsf/jcr/html"
+    xmlns:caf_h="http://webmethods.com/jsf/caf/html"
+    xmlns:caf_f="http://webmethods.com/jsf/caf/core"
+    xmlns:cafp_h="http://webmethods.com/jsf/cafp/html"
+    xmlns:cafp_f="http://webmethods.com/jsf/cafp/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:mws_f="http://webmethods.com/jsf/mws/core">
+
+    <caf_f:view pageManagedBean="ShowcaseDefaultviewView" preferencesBean="Showcase">
+        <caf_h:formattedMessages id="messages" />
+
+        <caf_h:form id="form">
+            <div>
+                <caf_h:oneWayToggleButton id="button1" for="dialog1">Select One</caf_h:oneWayToggleButton>
+                <jcr_h:nodePickerDialog id="dialog1" 
+                    jcrSession="#{jcrRepoBean.jcrSession}" 
+                    targetValue="#{jcrRepoBean.value}" 
+                    multipleSelectionsAllowed="false" />
+                <div>
+                    Selected Value: <span id="selected1">#{jcrRepoBean.value.path}</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 1em;">
+                <caf_h:oneWayToggleButton id="button2" for="dialog2">Select Many</caf_h:oneWayToggleButton>
+                <jcr_h:nodePickerDialog id="dialog2" 
+                    jcrSession="#{jcrRepoBean.jcrSession}" 
+                    targetValue="#{jcrRepoBean.values}" 
+                    multipleSelectionsAllowed="true" />
+                <div>
+                    Selected Values: 
+                    <caf_h:dataSimpleList id="list1" 
+                        var="row" value="#{jcrRepoBean.values}" 
+                        rows="1000" first="0" marker="decimal">
+                        #{row.path}
+                    </caf_h:dataSimpleList>
+                </div>
+            </div>
+        </caf_h:form>
+    </caf_f:view>
+
+</ui:composition>
